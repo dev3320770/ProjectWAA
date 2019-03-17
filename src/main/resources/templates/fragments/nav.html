@@ -1,0 +1,87 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+  <!--Main Navigation-->
+  <header>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark indigo">
+
+      <!-- Additional container -->
+      <div class="container">
+
+
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+          <!-- Links -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Dropdown</a>
+              <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+
+          </ul>
+          <!-- Links -->
+
+          <form class="form-inline">
+            <div class="md-form my-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div>
+              <button class="btn btn-outline-white btn-sm my-2 my-sm-0 ml-3" type="submit" th:text="#{label.search}">search</button>
+          </form>
+          
+                  
+          <ul class="navbar-nav ml-auto nav-flex-icons"> 
+      <li class="nav-item avatar dropdown">
+        <a class="nav-link dropdown-toggle nav-link p-0" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"  href="#">
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0" alt="avatar image" height="35">
+        </a>
+         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#" >Profile</a>
+                <a class="dropdown-item" href="/logout" >Logout</a>
+               
+              </div>
+      </li>
+    </ul>
+  
+        </div>
+        <!-- Collapsible content -->
+
+      </div>
+      <!-- Additional container -->
+
+    </nav>
+    <!--/.Navbar-->
+
+  </header>
+  <!--Main Navigation-->
+  </html>

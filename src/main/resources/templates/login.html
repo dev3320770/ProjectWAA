@@ -1,0 +1,90 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>TM Login</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<!-- Bootstrap core CSS -->
+<link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link th:href="@{css/mdb.min.css}" rel="stylesheet">
+<!-- Your custom styles (optional) -->
+<link th:href="@{css/style.css}" rel="stylesheet">
+</head>
+<body>
+<main class="mt-5"> <!--Main container-->
+	<div class="container">
+	<br>
+<br>
+<br>
+
+<br>
+<!-- Default form login -->
+<form class="text-center border border-light p-5" th:action="@{/login}" method="POST">
+<br>
+<br>
+
+
+    <p class="h4 mb-4">Sign in</p>
+ <div align="center" th:if="${param.error}">
+            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+        </div>
+    <!-- Email -->
+    <input type="email" id="email" class="form-control mb-4"  name="email" placeholder="E-mail">
+
+    <!-- Password -->
+    <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Password">
+
+    <div class="d-flex justify-content-around">
+        <div>
+            <!-- Remember me -->
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+            </div>
+        </div>
+        <div>
+            <!-- Forgot password -->
+            <a href="">Forgot password?</a>
+        </div>
+    </div>
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+  
+  
+
+</form>
+<!-- Default form login -->
+
+</div>
+	</main>
+	
+	
+	<!-- content -->
+
+	<!-- footer  -->
+	<footer th:replace="fragments/footer :: footer"> </footer>
+	<!-- footer -->
+
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript" th:src="@{js/jquery-3.3.1.min.js}"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" th:src="@{js/popper.min.js}"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" th:src="@{js/mdb.js}"></script>
+</body>
+</html>
