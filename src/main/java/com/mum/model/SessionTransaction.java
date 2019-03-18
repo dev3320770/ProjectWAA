@@ -3,18 +3,32 @@ package com.mum.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-public class SessionTransaction {
-	 
+@Entity
+public class SessionTransaction {	
+	
+	@Id
+	 @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;	
 	   
+	   @NotNull(message = "{NotNull.err}")
 	    private long studentId;
+	   @NotNull(message = "{NotNull.err}")
 	    private long sessionId;
+	   @NotNull(message = "{NotNull.err}")
 	    private Date checkinDate;
+	   @NotEmpty(message = "{NotEmpty.err}")
 	    private String amORpm;
+	   @NotEmpty(message = "{NotEmpty.err}")
 	    private String location;
+	   @NotEmpty(message = "{NotEmpty.err}")
 	    private String fullStudentName;
 		public long getStudentId() {
 			return studentId;

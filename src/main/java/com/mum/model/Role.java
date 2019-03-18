@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "role")
@@ -15,6 +16,7 @@ public class Role {
     @Column(name = "role_id")
     private int id;
     @Column(name = "role")
+    @NotEmpty(message = "{NotEmpty.err}")
     private String role;
 	public int getId() {
 		return id;

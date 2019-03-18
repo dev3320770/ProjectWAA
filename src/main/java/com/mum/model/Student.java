@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
+@Entity
 public class Student {
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,7 +35,13 @@ public class Student {
 	    private String email;	
 	    @Valid
 	    @OneToMany(cascade=CascadeType.ALL)
+	    @Fetch(FetchMode.JOIN)	    
         List<Block> blocks;
+	    
+	   // @OneToMany(cascade=CascadeType.ALL)
+	   // @Fetch(FetchMode.JOIN)	 
+	   //private SessionTransaction studentTransaction;
+	    
 		public long getId() {
 			return id;
 		}

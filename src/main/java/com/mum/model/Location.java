@@ -5,12 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+
+@Entity
 public class Location {
 
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    @Column(name = "id")
 	    private int id;	 
+	    @NotEmpty(message = "{NotEmpty.err}")
 	    private String name;
 		public int getId() {
 			return id;
