@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -27,21 +28,23 @@ public class User {
 	@Column(name = "user_id")
 	private int id;
 	@Column(name = "email")
-	@Email(message = "*Please provide a valid Email")
-	@NotEmpty(message = "*Please provide an email")
+	@Email(message = "{Email.err}")
+	@NotEmpty(message = "{NotEmpty.err}")
 	private String email;
 	@Column(name = "password")
-	@Length(min = 5, message = "*Your password must have at least 5 characters")
-	@NotEmpty(message = "*Please provide your password")
+	@Length(min = 5, message = "{Length.err}")
+	@NotEmpty(message = "{NotEmpty.err}")
 	private String password;
 	@Column(name = "firstName")
-	@NotEmpty(message = "*Please provide your name")
+	@NotEmpty(message = "{NotEmpty.err}")
 	private String firstName;
 	@Column(name = "lastName")
-	@NotEmpty(message = "*Please provide your last name")
+	@NotEmpty(message = "{NotEmpty.err}")
 	private String lastName;
 	@Column(name = "active")
 	private int active;
+	
+	@Valid
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
