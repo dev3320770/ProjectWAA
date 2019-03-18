@@ -40,9 +40,10 @@
 
 
     <p class="h4 mb-4">Sign in</p>
- <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
-        </div>
+
+        <div class="alert alert-danger" role="alert" th:if="${param.error}">
+Email or Password invalid, please verify
+</div>
     <!-- Email -->
     <input type="email" id="email" class="form-control mb-4"  name="email" placeholder="E-mail">
 
@@ -64,7 +65,7 @@
     </div>
 
     <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+    <button class="btn btn-primary btn-block my-4" type="submit">Sign in</button>
 
   
   
