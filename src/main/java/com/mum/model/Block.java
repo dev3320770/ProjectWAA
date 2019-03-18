@@ -5,24 +5,35 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+@Entity
 public class Block {
 	
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    @Column(name = "id")
-	    private long id;	  
+	    private long id;
+	    @NotEmpty(message = "{NotEmpty.err}")
 	    private String name;
-	    private String description;	    
+	    private String description;	
+	    @NotNull(message = "{NotNull.err}")
 	    private Date startDate;	    
+	    @NotNull(message = "{NotNull.err}")
 	    private Date endDate;	   
 	    @Valid
 	    @OneToMany(cascade=CascadeType.ALL)
+	    @Fetch(FetchMode.JOIN)	  
 	    private List<Session> sessions;
 		public long getId() {
 			return id;
