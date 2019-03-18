@@ -34,10 +34,10 @@ public class User {
 	@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your password")
 	private String password;
-	@Column(name = "name")
+	@Column(name = "firstName")
 	@NotEmpty(message = "*Please provide your name")
-	private String name;
-	@Column(name = "last_name")
+	private String firstName;
+	@Column(name = "lastName")
 	@NotEmpty(message = "*Please provide your last name")
 	private String lastName;
 	@Column(name = "active")
@@ -70,13 +70,7 @@ public class User {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public String getLastName() {
 		return lastName;
@@ -102,10 +96,14 @@ public class User {
 		this.roles = roles;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", lastName="
-				+ lastName + ", active=" + active + ", roles=" + roles + "]";
+	public String getFirstName() {
+		return firstName;
 	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
 
 }

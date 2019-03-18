@@ -40,7 +40,6 @@ public class WebAppContextConfig implements WebMvcConfigurer {
 	
 	public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/dashboard").setViewName("dashboard");
-        registry.addViewController("/").setViewName("dashboard");
         registry.addViewController("/login").setViewName("login");
 	
 	

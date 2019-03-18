@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -51,20 +52,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 
 	        http.
 	        authorizeRequests()
+	      
+           
 	        
 	        //.antMatchers("/").permitAll()
-	        .antMatchers("/login").permitAll()
-	        .antMatchers("/h2-console/**").permitAll()
+	        .antMatchers("/login","/h2-console/**").permitAll()
 	        .antMatchers("faculty/**").hasAuthority("FACULTY").anyRequest()
 	        .authenticated()
 	        .and()
             .authorizeRequests();
 	        http.csrf().disable();
-    		http.headers().frameOptions().disable()
-	
-//	        .antMatchers("/login").permitAll()
-//	        .antMatchers("faculty/**").hasAuthority("FACULTY").anyRequest()
-	     
+    		http.headers().frameOptions().disable()	     
 	        .and().csrf().disable().formLogin()
 	        .loginPage("/login").failureUrl("/login?error=true")
 	        .defaultSuccessUrl("/dashboard")
@@ -79,7 +77,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 	    public void configure(WebSecurity web) throws Exception {
 	        web
 	                .ignoring()
-	                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+	                .antMatchers("/resources/**");
 	    }
 
 }
