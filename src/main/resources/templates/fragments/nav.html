@@ -66,9 +66,9 @@
           <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0" alt="avatar image" height="35">
         </a>
          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#" >Profile</a>
-                <a class="dropdown-item" href="/logout" >Logout</a>
-               
+                <a class="dropdown-item" href="#" sec:authentication="name">Profile</a>
+                <a class="dropdown-item" href="/logout" >Logout (<span sec:authentication="principal.username"/>)</a>
+
               </div>
       </li>
     </ul>
