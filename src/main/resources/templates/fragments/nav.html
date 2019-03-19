@@ -71,11 +71,14 @@
 
 </ul>
 					<ul class="navbar-nav ml-auto nav-flex-icons">
-						<li class="nav-item avatar dropdown"><a
+						<li class="nav-item avatar dropdown">
+						
+						
+						<a
 							class="nav-link dropdown-toggle nav-link p-0"
 							id="navbarDropdownMenuLink" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false" href="#"> <img
-								src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+								src="https://ui-avatars.com/api/?name=J+D" th:attr="src=@{https://ui-avatars.com/api/?uppercase=True(name=${user.firstName}  + ${user.lastName})}"
 								class="rounded-circle z-depth-0" alt="avatar image" height="35">
 						</a>
 							<div class="dropdown-menu dropdown-primary"
