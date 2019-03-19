@@ -55,21 +55,13 @@ public class SessionTransaction implements Serializable {
 		this.id = id;
 	}
 
-//	public long getStudentId() {
-//		return studentId;
-//	}
-//
-//	public void setStudentId(long studentId) {
-//		this.studentId = studentId;
-//	}
-//
-//public long getSessionId() {
-//		return sessionId;
-//	}
-//
-//	public void setSessionId(long sessionId) {
-//		this.sessionId = sessionId;
-//	}
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 
 	public LocalDate getCheckinDate() {
 		return checkinDate;
@@ -127,9 +119,7 @@ public class SessionTransaction implements Serializable {
 		this.session = session;
 	}
 
-	public Student getStudent() {
-		return student;
-	}
+	
 
 	public void setStudent(Student student) {
 		this.student = student;

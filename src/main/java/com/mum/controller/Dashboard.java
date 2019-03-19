@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mum.data.init.Data_Init;
+
 @Controller
 public class Dashboard {
 	
@@ -25,6 +27,7 @@ public class Dashboard {
 		if (role.equals("[FACULTY]")) {
 			return "admin/facultyDashboard";
 		}
+		
 		
 	
 		

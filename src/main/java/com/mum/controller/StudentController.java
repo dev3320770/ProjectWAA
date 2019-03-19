@@ -2,13 +2,15 @@ package com.mum.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/student")
-public class UserController {
+public class StudentController {
 	
 
 	@RequestMapping(value="/reportform", method=RequestMethod.GET)
@@ -30,10 +32,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/reportform", method=RequestMethod.POST)
-	public String getReport(@RequestParam("studentid") String studentid,
+	public @ResponseBody String getReport(@RequestBody @RequestParam("studentid") String studentid,
 			                Model model ) {		
 	
-		return "StudentForm";
+		return "redirect:/dis";
 	}
 	
 
