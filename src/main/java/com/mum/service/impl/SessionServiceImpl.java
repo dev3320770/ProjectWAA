@@ -42,7 +42,10 @@ public class SessionServiceImpl implements SessionService {
 
 	@Override
 	public Session findSessionById(long id) {
-		return sessionRepository.findById(id).get();
+		Optional<Session> sessionOptional = sessionRepository.findById(id);
+		if (sessionOptional.isPresent())
+			return sessionOptional.get();
+		return null;
 	}
 
 	@Override
