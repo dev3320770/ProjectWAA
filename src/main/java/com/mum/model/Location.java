@@ -1,5 +1,7 @@
 package com.mum.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,49 +14,52 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class Location {
+public class Location implements Serializable {
 
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-	    @Column(name = "id")
-	    private int id;	
-	    private long demoID;
-	    @NotEmpty(message = "{NotEmpty.err}")
-	    private String name;
-		
-	    private String Description;
+	/**
+	* 
+	*/
+	private static final long serialVersionUID = 982774411555669258L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private int id;
+	private long demoID;
+	@NotEmpty(message = "{NotEmpty.err}")
+	private String name;
 
-		public int getId() {
-			return id;
-		}
+	private String Description;
 
-		public void setId(int id) {
-			this.id = id;
-		}
+	public int getId() {
+		return id;
+	}
 
-		public long getDemoID() {
-			return demoID;
-		}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-		public void setDemoID(long demoID) {
-			this.demoID = demoID;
-		}
+	public long getDemoID() {
+		return demoID;
+	}
 
-		public String getName() {
-			return name;
-		}
+	public void setDemoID(long demoID) {
+		this.demoID = demoID;
+	}
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public String getDescription() {
-			return Description;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-		public void setDescription(String description) {
-			Description = description;
-		}
-	    
-	 
+	public String getDescription() {
+		return Description;
+	}
+
+	public void setDescription(String description) {
+		Description = description;
+	}
+
 }

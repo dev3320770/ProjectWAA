@@ -1,5 +1,6 @@
 package com.mum.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,39 +20,44 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-public class Faculty {
+public class Faculty implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7732998540875682657L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	private int id;
-	
+	private Long id;
+
 	private long demoID;
-	
+
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String firstName;
-	
+
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String lastName;
 	@Column(name = "email")
 	@Email(message = "{Email.err}")
 	private String email;
-	
+
 	@Column(name = "title")
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String title;
-	
-	@OneToOne(mappedBy = "faculty",	cascade = CascadeType.ALL)
-	private Course course;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id",    nullable = false)
-    private User user_faculty;
 
-	public int getId() {
+	@OneToOne(mappedBy = "faculty", cascade = CascadeType.ALL)
+	private Course course;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user_faculty;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -110,8 +116,5 @@ public class Faculty {
 	public void setUser_faculty(User user_faculty) {
 		this.user_faculty = user_faculty;
 	}
-	
-	
-	
 
 }

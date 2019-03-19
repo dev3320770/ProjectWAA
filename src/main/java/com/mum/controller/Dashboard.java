@@ -16,14 +16,14 @@ public class Dashboard {
 	public String UserDashboard(Principal principal) {
 	
 		String role=  ((Authentication) principal).getAuthorities().toString();
-		System.out.println(role);
+		System.out.println(principal);
 		
 		if(role.equals("[ADMIN]")) {
-			return "admin/students";
+			return "admin/entries";
 		}
 		
 		if (role.equals("[FACULTY]")) {
-			return "faculty/dashboard";
+			return "admin/facultyDashboard";
 		}
 		
 	
@@ -47,5 +47,26 @@ public class Dashboard {
 		return "admin/entries";
 	}
 	
+	
+	@RequestMapping(value="/admin/faculties", method=RequestMethod.GET)
+	public String getFuculties() {
+	
+		
+		return "admin/faculties";
+	}
+	
+	@RequestMapping(value="/admin/students/details", method=RequestMethod.GET)
+	public String studentDetails() {
+	
+		
+		return "admin/studentDetails";
+	}
+	
+	@RequestMapping(value="/admin/block/details", method=RequestMethod.GET)
+	public String blockDetails() {
+	
+		
+		return "admin/blockDetails";
+	}
 
 }

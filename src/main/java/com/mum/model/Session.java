@@ -1,5 +1,6 @@
 package com.mum.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,133 +27,116 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-
 @Entity
-public class Session {
-	
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-	    @Column(name = "id")
-	    private long id;	
-	    private long demoID;
-	   
-		@NotNull(message = "{NotNull.err}")
-	    private LocalDate sessionDate;
-	    @NotNull(message = "{NotNull.err}")
-	    private LocalDateTime sessionStartTime;
-	    @NotNull(message = "{NotNull.err}")
-	    private LocalDateTime sessionEndTime;
-	    @NotEmpty(message = "{NotEmpty.err}")
-	    private SessionType sessionType;
-	    
-	    @Valid
-	    @OneToOne(cascade =CascadeType.ALL)
-	    @JoinColumn(name = "location_id", nullable = false)
-	    private Location location;
-	    
-	    @ManyToOne
-	    private Block block;
-	    
-	    
-	    @Valid
-	    @LazyCollection(LazyCollectionOption.FALSE)
-	    @OneToMany(cascade=CascadeType.ALL)
-	    @Fetch(FetchMode.JOIN)	  
-	    private Set<SessionTransaction> sessionTransactions ;
+public class Session implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4521270593985598780L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+	private long demoID;
 
-		public long getId() {
-			return id;
-		}
+	@NotNull(message = "{NotNull.err}")
+	private LocalDate sessionDate;
+	@NotNull(message = "{NotNull.err}")
+	private LocalDateTime sessionStartTime;
+	@NotNull(message = "{NotNull.err}")
+	private LocalDateTime sessionEndTime;
+	@NotEmpty(message = "{NotEmpty.err}")
+	private SessionType sessionType;
 
+	@Valid
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "location_id", nullable = false)
+	private Location location;
 
-		public void setId(long id) {
-			this.id = id;
-		}
+	@ManyToOne
+	private Block block;
 
+	@Valid
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL)
+	@Fetch(FetchMode.JOIN)
+	private Set<SessionTransaction> sessionTransactions;
 
-		public long getDemoID() {
-			return demoID;
-		}
+	public long getId() {
+		return id;
+	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 
-		public void setDemoID(long demoID) {
-			this.demoID = demoID;
-		}
+	public long getDemoID() {
+		return demoID;
+	}
 
+	public void setDemoID(long demoID) {
+		this.demoID = demoID;
+	}
 
-		public LocalDate getSessionDate() {
-			return sessionDate;
-		}
+	public LocalDate getSessionDate() {
+		return sessionDate;
+	}
 
+	public void setSessionDate(LocalDate sessionDate) {
+		this.sessionDate = sessionDate;
+	}
 
-		public void setSessionDate(LocalDate sessionDate) {
-			this.sessionDate = sessionDate;
-		}
+	public LocalDateTime getSessionStartTime() {
+		return sessionStartTime;
+	}
 
+	public void setSessionStartTime(LocalDateTime sessionStartTime) {
+		this.sessionStartTime = sessionStartTime;
+	}
 
-		public LocalDateTime getSessionStartTime() {
-			return sessionStartTime;
-		}
+	public LocalDateTime getSessionEndTime() {
+		return sessionEndTime;
+	}
 
+	public void setSessionEndTime(LocalDateTime sessionEndTime) {
+		this.sessionEndTime = sessionEndTime;
+	}
 
-		public void setSessionStartTime(LocalDateTime sessionStartTime) {
-			this.sessionStartTime = sessionStartTime;
-		}
+	public SessionType getSessionType() {
+		return sessionType;
+	}
 
+	public void setSessionType(SessionType sessionType) {
+		this.sessionType = sessionType;
+	}
 
-		public LocalDateTime getSessionEndTime() {
-			return sessionEndTime;
-		}
+	public Location getLocation() {
+		return location;
+	}
 
+	public void setLocation(Location location) {
+		this.location = location;
+	}
 
-		public void setSessionEndTime(LocalDateTime sessionEndTime) {
-			this.sessionEndTime = sessionEndTime;
-		}
+	public Block getBlock() {
+		return block;
+	}
 
+	public void setBlock(Block block) {
+		this.block = block;
+	}
 
-		public SessionType getSessionType() {
-			return sessionType;
-		}
+	public Set<SessionTransaction> getSessionTransactions() {
+		return sessionTransactions;
+	}
 
+	public void setSessionTransactions(Set<SessionTransaction> sessionTransactions) {
+		this.sessionTransactions = sessionTransactions;
+	}
 
-		public void setSessionType(SessionType sessionType) {
-			this.sessionType = sessionType;
-		}
+	public void addSessionTransaction(SessionTransaction sessionTransaction) {
+		this.sessionTransactions.add(sessionTransaction);
+	}
 
-
-		public Location getLocation() {
-			return location;
-		}
-
-
-		public void setLocation(Location location) {
-			this.location = location;
-		}
-
-
-		public Block getBlock() {
-			return block;
-		}
-
-
-		public void setBlock(Block block) {
-			this.block = block;
-		}
-
-
-		public Set<SessionTransaction> getSessionTransactions() {
-			return sessionTransactions;
-		}
-
-
-		public void setSessionTransactions(Set<SessionTransaction> sessionTransactions) {
-			this.sessionTransactions = sessionTransactions;
-		}
-
-		public void addSessionTransaction(SessionTransaction sessionTransaction) {
-			this.sessionTransactions.add(sessionTransaction);
-		}
-	    
-	    
 }

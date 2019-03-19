@@ -1,5 +1,6 @@
 package com.mum.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -26,105 +27,105 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
-public class Course {
-	
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-	    @Column(name = "id")
-	    private long id;
-	    private long demoID;
-	    
-	    @NotEmpty(message = "{NotEmpty.err}")
-	    private String code;
-	    @NotEmpty(message = "{NotEmpty.err}")	   
-	    private String name;
-	    @NotEmpty(message = "{NotEmpty.err}")
-	    private String description;	
-	   
-	    
-	    @ManyToOne
-	    private Block block;
-	    
-	    @Valid
-	    @OneToOne(cascade = CascadeType.ALL)
-	    @JoinColumn(name = "faculty_id",
-	    nullable = false)
-	    private Faculty faculty;
-	    
-	    @Valid
-	    @LazyCollection(LazyCollectionOption.FALSE)
-	    @OneToMany(cascade=CascadeType.ALL)
-	    @Fetch(FetchMode.JOIN)	  
-	    private Set<Student> students;
+public class Course implements Serializable {
 
-		public long getId() {
-			return id;
-		}
+	/**
+	* 
+	*/
+	private static final long serialVersionUID = -6251239061685918298L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+	private long demoID;
 
-		public void setId(long id) {
-			this.id = id;
-		}
+	@NotEmpty(message = "{NotEmpty.err}")
+	private String code;
+	@NotEmpty(message = "{NotEmpty.err}")
+	private String name;
+	@NotEmpty(message = "{NotEmpty.err}")
+	private String description;
 
-		public long getDemoID() {
-			return demoID;
-		}
+	@ManyToOne
+	private Block block;
 
-		public void setDemoID(long demoID) {
-			this.demoID = demoID;
-		}
+	@Valid
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "faculty_id", nullable = false)
+	private Faculty faculty;
 
-		public String getCode() {
-			return code;
-		}
+	@Valid
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL)
+	@Fetch(FetchMode.JOIN)
+	private Set<Student> students;
 
-		public void setCode(String code) {
-			this.code = code;
-		}
+	public long getId() {
+		return id;
+	}
 
-		public String getName() {
-			return name;
-		}
+	public void setId(long id) {
+		this.id = id;
+	}
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	public long getDemoID() {
+		return demoID;
+	}
 
-		public String getDescription() {
-			return description;
-		}
+	public void setDemoID(long demoID) {
+		this.demoID = demoID;
+	}
 
-		public void setDescription(String description) {
-			this.description = description;
-		}
+	public String getCode() {
+		return code;
+	}
 
-		public Block getBlock() {
-			return block;
-		}
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-		public void setBlock(Block block) {
-			this.block = block;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public Faculty getFaculty() {
-			return faculty;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-		public void setFaculty(Faculty faculty) {
-			this.faculty = faculty;
-		}
+	public String getDescription() {
+		return description;
+	}
 
-		public Set<Student> getStudents() {
-			return students;
-		}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-		public void setStudents(Set<Student> students) {
-			this.students = students;
-		}
+	public Block getBlock() {
+		return block;
+	}
 
+	public void setBlock(Block block) {
+		this.block = block;
+	}
 
-		public void addStudent(Student student) {
-			this.students.add(student);
-		}
-		
-		
+	public Faculty getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
+	public void addStudent(Student student) {
+		this.students.add(student);
+	}
+
 }

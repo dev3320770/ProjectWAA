@@ -1,5 +1,6 @@
 package com.mum.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -13,33 +14,38 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class SessionTransaction {	
-	
+public class SessionTransaction implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2586429374881431820L;
+
 	@Id
-	 @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private long id;	
-	  
-	   @NotNull(message = "{NotNull.err}")
-	   private long studId;
-       //private long studentId;
-	   @NotNull(message = "{NotNull.err}")
-	   private long sessId;
-       //private long sessionId;
-	   @NotNull(message = "{NotNull.err}")
-	    private LocalDate checkinDate;
-	   @NotEmpty(message = "{NotEmpty.err}")
-	    private String amORpm;
-	   @NotEmpty(message = "{NotEmpty.err}")
-	    private String location;
-	   @NotEmpty(message = "{NotEmpty.err}")
-	    private String fullStudentName;
-		
-	   @ManyToOne
-	    private Session session;
-	   
-	   @ManyToOne
-	    private Student student;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+
+	@NotNull(message = "{NotNull.err}")
+	private long studId;
+	// private long studentId;
+	@NotNull(message = "{NotNull.err}")
+	private long sessId;
+	// private long sessionId;
+	@NotNull(message = "{NotNull.err}")
+	private LocalDate checkinDate;
+	@NotEmpty(message = "{NotEmpty.err}")
+	private String amORpm;
+	@NotEmpty(message = "{NotEmpty.err}")
+	private String location;
+	@NotEmpty(message = "{NotEmpty.err}")
+	private String fullStudentName;
+
+	@ManyToOne
+	private Session session;
+
+	@ManyToOne
+	private Student student;
 
 	public long getId() {
 		return id;
@@ -128,6 +134,5 @@ public class SessionTransaction {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	   
-	   
+
 }

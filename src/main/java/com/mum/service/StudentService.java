@@ -21,16 +21,16 @@ public interface StudentService {
 	
 	 Student save(Student s);
 	 List<Student> findAll();
-	 Optional<Student> findById(long id);	 
+	 Student findById(long id);	 
 	 
-	 int getTotalSessionsPossible(long studentid);
-	 int getTotalSessionsAttended(long studentid);
-	 double getTotalAttributePercentAttendance(long studentid);	 
-	 List<Block> getBlocksByStudentID(long studentid);
-	 
-	 int getNoSessionsInBlock(long sessionid);
-	 int getNoDaysPresentInBlock(long sessionid,long studentNo);
-	 double getPercentageAttendedInBlock(long Sessionid,long studentNo);
-	 double getExtraCreditPointsInBlock(long Sessionid,long studentNo); 
+//	 int getTotalSessionsPossible(long studentid);
+//	 int getTotalSessionsAttended(long studentid);
+//	 double getTotalAttributePercentAttendance(long studentid);	 
+//	 List<Block> getBlocksByStudentID(long studentid);
+//	 
+//	 int getNoSessionsInBlock(long sessionid);
+//	 int getNoDaysPresentInBlock(long sessionid,long studentNo);
+//	 double getPercentageAttendedInBlock(long Sessionid,long studentNo);
+//	 double getExtraCreditPointsInBlock(long Sessionid,long studentNo); 
 
 }

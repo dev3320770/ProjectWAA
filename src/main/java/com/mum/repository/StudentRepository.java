@@ -13,7 +13,7 @@ import com.mum.model.Student;
 import com.mum.model.User;
 
 
-@Repository("studentRepository")
+@Repository
 public interface StudentRepository extends CrudRepository<Student, Long> {
 	
 	// native example

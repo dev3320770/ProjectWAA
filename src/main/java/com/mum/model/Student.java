@@ -1,5 +1,6 @@
 package com.mum.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -27,119 +28,123 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
-public class Student {
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-	    @Column(name = "studentId")
-	    private long id;	
-	    private long demoID;
-	    @NotEmpty(message = "{NotEmpty.err}")
-	    private String code;
-	   
-		@NotEmpty(message = "{NotEmpty.err}")
-	    private String firstName;
-	    @NotEmpty(message = "{NotEmpty.err}")
-	    private String lastName;	
-	    @NotNull(message = "{NotNull.err}")	  
-	    private LocalDate entryDate;	    
-	    @Email
-	    private String email;	
-	   
-	    @ManyToOne
-	    private Course course;
-	    
-	    @Valid
-	    @LazyCollection(LazyCollectionOption.FALSE)
-	    @OneToMany(cascade=CascadeType.ALL)
-	    @Fetch(FetchMode.JOIN)	  
-	    private Set<SessionTransaction> sessionTransactions ;
-	    
-	    @OneToOne(cascade = CascadeType.ALL)
-	    @JoinColumn(name = "user_id",
-	    nullable = false)
-	    private User user_student;
+public class Student implements Serializable {
+	/**
+	* 
+	*/
+	private static final long serialVersionUID = 8485169243133898497L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "studentId")
+	private long id;
+	private long demoID;
+	@NotEmpty(message = "{NotEmpty.err}")
+	private String code;
 
-		public long getId() {
-			return id;
-		}
+	@NotEmpty(message = "{NotEmpty.err}")
+	private String firstName;
+	@NotEmpty(message = "{NotEmpty.err}")
+	private String lastName;
+	@NotNull(message = "{NotNull.err}")
+	private LocalDate entryDate;
+	@Email
+	private String email;
 
-		public void setId(long id) {
-			this.id = id;
-		}
+	@ManyToOne
+	private Course course;
 
-		public long getDemoID() {
-			return demoID;
-		}
+	@Valid
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL)
+	@Fetch(FetchMode.JOIN)
+	private Set<SessionTransaction> sessionTransactions;
 
-		public void setDemoID(long demoID) {
-			this.demoID = demoID;
-		}
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user_student;
 
-		public String getCode() {
-			return code;
-		}
+	public long getId() {
+		return id;
+	}
 
-		public void setCode(String code) {
-			this.code = code;
-		}
+	public void setId(long id) {
+		this.id = id;
+	}
 
-		public String getFirstName() {
-			return firstName;
-		}
+	public long getDemoID() {
+		return demoID;
+	}
 
-		public void setFirstName(String firstName) {
-			this.firstName = firstName;
-		}
+	public void setDemoID(long demoID) {
+		this.demoID = demoID;
+	}
 
-		public String getLastName() {
-			return lastName;
-		}
+	public String getCode() {
+		return code;
+	}
 
-		public void setLastName(String lastName) {
-			this.lastName = lastName;
-		}
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-		public LocalDate getEntryDate() {
-			return entryDate;
-		}
+	public String getFirstName() {
+		return firstName;
+	}
 
-		public void setEntryDate(LocalDate entryDate) {
-			this.entryDate = entryDate;
-		}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-		public String getEmail() {
-			return email;
-		}
+	public String getLastName() {
+		return lastName;
+	}
 
-		public void setEmail(String email) {
-			this.email = email;
-		}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-		public Course getCourse() {
-			return course;
-		}
+	public LocalDate getEntryDate() {
+		return entryDate;
+	}
 
-		public void setCourse(Course course) {
-			this.course = course;
-		}
+	public void setEntryDate(LocalDate entryDate) {
+		this.entryDate = entryDate;
+	}
 
-		public Set<SessionTransaction> getSessionTransactions() {
-			return sessionTransactions;
-		}
+	public String getEmail() {
+		return email;
+	}
 
-		public void setSessionTransactions(Set<SessionTransaction> sessionTransactions) {
-			this.sessionTransactions = sessionTransactions;
-		}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-		public User getUser_student() {
-			return user_student;
-		}
+	public Course getCourse() {
+		return course;
+	}
 
-		public void setUser_student(User user_student) {
-			this.user_student = user_student;
-		}
-		public void addSessionTransaction(SessionTransaction sessionTransaction) {
-			this.sessionTransactions.add(sessionTransaction);
-		}
-	    
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public Set<SessionTransaction> getSessionTransactions() {
+		return sessionTransactions;
+	}
+
+	public void setSessionTransactions(Set<SessionTransaction> sessionTransactions) {
+		this.sessionTransactions = sessionTransactions;
+	}
+
+	public User getUser_student() {
+		return user_student;
+	}
+
+	public void setUser_student(User user_student) {
+		this.user_student = user_student;
+	}
+
+	public void addSessionTransaction(SessionTransaction sessionTransaction) {
+		this.sessionTransactions.add(sessionTransaction);
+	}
+
 }
