@@ -1,5 +1,6 @@
 package com.mum.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -18,11 +20,14 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6512987754476884841L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
@@ -43,11 +48,17 @@ public class User {
 	private String lastName;
 	@Column(name = "active")
 	private int active;
-	
+
 	@Valid
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
+
+	@OneToOne(mappedBy = "user_faculty", cascade = CascadeType.ALL)
+	private Faculty faculty;
+
+	@OneToOne(mappedBy = "user_student", cascade = CascadeType.ALL)
+	private Student student;
 
 	public int getId() {
 		return id;
@@ -72,8 +83,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 
 	public String getLastName() {
 		return lastName;
@@ -107,6 +116,20 @@ public class User {
 		this.firstName = firstName;
 	}
 
+	public Faculty getFaculty() {
+		return faculty;
+	}
 
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 
 }

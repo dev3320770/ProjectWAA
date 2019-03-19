@@ -1,0 +1,133 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>TM Students</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<!-- Bootstrap core CSS -->
+<link th:href="@{~/css/bootstrap.min.css}" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link th:href="@{~/css/mdb.min.css}" rel="stylesheet">
+<!-- Your custom styles (optional) -->
+<link th:href="@{~/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+	<!-- navigation -->
+	<nav  th:replace="fragments/nav :: nav" >
+	This nav content is going
+		to be replaced.</nav>
+	<!-- navigation -->
+
+
+
+
+	<!-- content -->
+	<!--Main layout-->
+	<main class="mt-5"> <!--Main container-->
+	<div class="container">
+
+
+		<h3>Static content for prototyping purposes only</h3>
+		<br>
+		<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Student ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Current Block</th>
+       <th scope="col">Block Session (%)</th>
+        <th scope="col">Total Session (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" >1</th>
+      <td><a th:href="@{~/admin/students/details}">986669</a></td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>WAA</td>
+      <td>14<span class="badge badge-danger ml-2">9%</span></td>
+      <td>124<span class="badge badge-danger ml-2">9%</span></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td th:href="@{/details}">986669</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+     <td>WAA</td>
+      <td>14<span class="badge badge-danger ml-2">9%</span></td>
+      <td>124<span class="badge badge-danger ml-2">9%</span></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td th:href="@{/details}">986669</td>
+      <td>Larry </td>
+      <td>Bird</td>
+     <td>WAA</td>
+      <td>14<span class="badge badge-danger ml-2">9%</span></td>
+      <td>124 <span class="badge badge-danger ml-2">9%</span> </td>
+        
+    </tr>
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination pagination-circle pg-blue">
+    <li class="page-item disabled"><a class="page-link">First</a></li>
+    <li class="page-item disabled">
+      <a class="page-link" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item active"><a class="page-link">1</a></li>
+    <li class="page-item"><a class="page-link">2</a></li>
+    <li class="page-item"><a class="page-link">3</a></li>
+    <li class="page-item"><a class="page-link">4</a></li>
+    <li class="page-item"><a class="page-link">5</a></li>
+    <li class="page-item">
+      <a class="page-link" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link">Last</a></li>
+  </ul>
+</nav>
+	</div>
+
+	</main>
+	
+	
+	<!-- content -->
+
+	<!-- footer  -->
+	<footer th:replace="fragments/footer :: footer"> </footer>
+	<!-- footer -->
+
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" th:src="@{~/js/popper.min.js}"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" th:src="@{~/js/bootstrap.min.js}"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" th:src="@{~/js/mdb.js}"></script>
+	<script type="text/javascript" th:src="@{~/js/custom.js}"></script>
+
+</body>
+</html>
