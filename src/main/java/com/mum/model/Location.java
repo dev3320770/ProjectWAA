@@ -17,22 +17,44 @@ public class Location {
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    @Column(name = "id")
-	    private int id;	 
+	    private int id;	
+	    private long demoID;
 	    @NotEmpty(message = "{NotEmpty.err}")
 	    private String name;
+		
+	    private String Description;
+
 		public int getId() {
 			return id;
 		}
+
 		public void setId(int id) {
 			this.id = id;
 		}
+
+		public long getDemoID() {
+			return demoID;
+		}
+
+		public void setDemoID(long demoID) {
+			this.demoID = demoID;
+		}
+
 		public String getName() {
 			return name;
 		}
+
 		public void setName(String name) {
 			this.name = name;
 		}
-	    
+
+		public String getDescription() {
+			return Description;
+		}
+
+		public void setDescription(String description) {
+			Description = description;
+		}
 	    
 	 
 }
