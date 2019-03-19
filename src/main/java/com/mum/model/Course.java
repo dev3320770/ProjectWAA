@@ -11,7 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
 import javax.validation.constraints.NotEmpty;
@@ -23,33 +26,36 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
-public class Block {
+public class Course {
 	
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    @Column(name = "id")
 	    private long id;
 	    private long demoID;
+	    
 	    @NotEmpty(message = "{NotEmpty.err}")
-	   
+	    private String code;
+	    @NotEmpty(message = "{NotEmpty.err}")	   
 	    private String name;
 	    @NotEmpty(message = "{NotEmpty.err}")
 	    private String description;	
-	    @NotNull(message = "{NotNull.err}")
-	    private LocalDate startDate;	    
-	    @NotNull(message = "{NotNull.err}")
-	    private LocalDate endDate;	 
+	   
+	    
+	    @ManyToOne
+	    private Block block;
 	    
 	    @Valid
-	    @OneToMany(cascade=CascadeType.ALL)
-	    @Fetch(FetchMode.JOIN)	  
-	    private List<Session> sessions;
+	    @OneToOne(cascade = CascadeType.ALL)
+	    @JoinColumn(name = "faculty_id",
+	    nullable = false)
+	    private Faculty faculty;
 	    
 	    @Valid
 	    @LazyCollection(LazyCollectionOption.FALSE)
 	    @OneToMany(cascade=CascadeType.ALL)
 	    @Fetch(FetchMode.JOIN)	  
-	    private Set<Course> courses;
+	    private Set<Student> students;
 
 		public long getId() {
 			return id;
@@ -65,6 +71,14 @@ public class Block {
 
 		public void setDemoID(long demoID) {
 			this.demoID = demoID;
+		}
+
+		public String getCode() {
+			return code;
+		}
+
+		public void setCode(String code) {
+			this.code = code;
 		}
 
 		public String getName() {
@@ -83,42 +97,34 @@ public class Block {
 			this.description = description;
 		}
 
-		public LocalDate getStartDate() {
-			return startDate;
+		public Block getBlock() {
+			return block;
 		}
 
-		public void setStartDate(LocalDate startDate) {
-			this.startDate = startDate;
+		public void setBlock(Block block) {
+			this.block = block;
 		}
 
-		public LocalDate getEndDate() {
-			return endDate;
+		public Faculty getFaculty() {
+			return faculty;
 		}
 
-		public void setEndDate(LocalDate endDate) {
-			this.endDate = endDate;
+		public void setFaculty(Faculty faculty) {
+			this.faculty = faculty;
 		}
 
-		public List<Session> getSessions() {
-			return sessions;
+		public Set<Student> getStudents() {
+			return students;
 		}
 
-		public void setSessions(List<Session> sessions) {
-			this.sessions = sessions;
+		public void setStudents(Set<Student> students) {
+			this.students = students;
 		}
 
-		public Set<Course> getCourses() {
-			return courses;
-		}
 
-		public void setCourses(Set<Course> courses) {
-			this.courses = courses;
+		public void addStudent(Student student) {
+			this.students.add(student);
 		}
-	    
-		public void addCourse(Course course) {
-			this.courses.add(course);
-		}
-		public void addSession(Session session) {
-			this.sessions.add(session);
-		}
+		
+		
 }
