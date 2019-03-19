@@ -1,5 +1,6 @@
 package com.mum.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -24,17 +25,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Block implements Serializable {
-
-	/**
-	* 
-	*/
-	private static final long serialVersionUID = 2897153111630115854L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private long id;
-	
-	 	@Id
+		@Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    @Column(name = "block_id")
 	    private long id;
@@ -132,8 +123,4 @@ public class Block implements Serializable {
 				return block;
 			}
 		}
-
-	public void addSession(Session session) {
-		this.sessions.add(session);
-	}
 }

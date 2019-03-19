@@ -1,22 +1,36 @@
 package com.mum.service.impl;
 
+import java.text.DateFormatSymbols;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mum.model.Block;
 import com.mum.model.Session;
+import com.mum.model.SessionType;
+import com.mum.model.Block.BlockBuilder;
+import com.mum.model.Session.SessionBuilder;
+import com.mum.repository.BlockRepository;
 import com.mum.repository.SessionRepository;
 import com.mum.service.SessionService;
 @Service
 public class SessionServiceImpl implements SessionService {
 	
 	@Autowired
-	SessionRepository sessionRepository;
+	private SessionRepository sessionRepository;
+	
+	@Autowired 
+	private BlockRepository blockRepository;
 
 	@Override
 	public Session save(Session session) {
 		// TODO Auto-generated method stub
+		System.out.println("Calling repository save method ..... ");
 		return sessionRepository.save(session);
 	}
 
@@ -27,9 +41,11 @@ public class SessionServiceImpl implements SessionService {
 	}
 
 	@Override
-	public Session findById(long id) {
-		// TODO Auto-generated method stub
-		return sessionRepository.findById(id).get();
+	public Session findSessionById(long id) {
+		Optional<Session> sessionOptional = sessionRepository.findById(id);
+		if (sessionOptional.isPresent())
+			return sessionOptional.get();
+		return null;
 	}
 
 	@Override
@@ -45,9 +61,20 @@ public class SessionServiceImpl implements SessionService {
 	}
 
 	@Override
-	public boolean existsById(Long id) {
+	public boolean existsById(long id) {
 		// TODO Auto-generated method stub
 		return sessionRepository.existsById(id);
 	}
+	
+	@Override
+	public List<Session> getAllSessionsInBlock (long blockId) {
+		return sessionRepository.getAllSessionInBlock(blockId);
+	}
+	
+	
+	// -------------------------- DATA GENERATOR --------------------------------- //
+	
+	
+	
 
 }

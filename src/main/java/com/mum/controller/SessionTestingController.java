@@ -9,16 +9,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mum.model.Session;
+import com.mum.service.DataGeneratorService;
 import com.mum.service.SessionService;
 
 @Controller
 public class SessionTestingController {
 	
 	@Autowired private SessionService sessionService;
+	@Autowired private DataGeneratorService dataGeneratorService;
 	
 	@GetMapping("/session/getSession/id/{sessionId}")
 	public void getSessionByID(@PathVariable Long sessionID) {
-		System.out.println(sessionService.getSessionByID(sessionID));
+		System.out.println(sessionService.findSessionById(sessionID));
 	}
 	
 	@RequestMapping("/sesion/session/block/{blockId}")
@@ -33,8 +35,9 @@ public class SessionTestingController {
 	
 	@RequestMapping("/populate")
 	public String populate() {
-		sessionService.initializeDatabase();
-		return "dashboard";
+		dataGeneratorService.initializeBlocksAndSessions();
+		System.out.println("DONE DONE DONE DONE DONE");
+		return "login";
 	}
 
 }
