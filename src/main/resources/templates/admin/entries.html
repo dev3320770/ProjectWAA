@@ -1,0 +1,185 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>TM Students</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<!-- Bootstrap core CSS -->
+<link th:href="@{~/css/bootstrap.min.css}" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link th:href="@{~/css/mdb.min.css}" rel="stylesheet">
+<!-- Your custom styles (optional) -->
+<link th:href="@{~/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+	<!-- navigation -->
+	<nav th:replace="fragments/nav :: nav">This nav content is going
+		to be replaced.</nav>
+	<!-- navigation -->
+
+	<!-- content -->
+	<!--Main layout-->
+	<main class="mt-5"> <!--Main container-->
+	<div class="container">
+
+		<h3>Static content for prototyping purposes only</h3>
+		<br>
+		
+		<div class="container">
+  <div class="row">
+
+
+    
+    <div class="col-md-4">
+
+	<!--Accordion wrapper-->
+<div class="accordion md-accordion accordion-3 z-depth-1-half" id="accordionEx194" role="tablist"
+aria-multiselectable="true">
+
+
+
+<h2 class="text-center text-uppercase red-text py-4 px-3">Entries By Year</h2>
+
+<hr class="mb-0">
+
+<!-- Accordion card -->
+<div class="card">
+
+  <!-- Card header -->
+  <div class="card-header" role="tab" id="heading4">
+    <a data-toggle="collapse" data-parent="#accordionEx194" href="#collapse4" aria-expanded="true"
+      aria-controls="collapse4">
+      <h3 class="mb-0 red-text">
+        2019<div class="animated-icon1 float-right mt-1"><span></span><span></span><span></span></div>
+      </h3>
+    </a>
+  </div>
+
+  <!-- Card body -->
+  <div id="collapse4" class="collapse show" role="tabpanel" aria-labelledby="heading4" data-parent="#accordionEx194">
+    <div class="card-body pt-0">
+      <p>FEB</p>
+       <p>APRIL</p>
+        <p>AUG</p>
+        <p>OCT</p>
+    </div>
+  </div>
+</div>
+<!-- Accordion card -->
+
+<!-- Accordion card -->
+<div class="card">
+
+  <!-- Card header -->
+  <div class="card-header" role="tab" id="heading5">
+    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx194" href="#collapse5" aria-expanded="false"
+      aria-controls="collapse5">
+      <h3 class="mb-0 red-text">
+       2018 <div class="animated-icon1 float-right mt-1"><span></span><span></span><span></span></div>
+      </h3>
+    </a>
+  </div>
+
+  <!-- Card body -->
+  <div id="collapse5" class="collapse" role="tabpanel" aria-labelledby="heading5" data-parent="#accordionEx194">
+    <div class="card-body pt-0">
+      <p>FEB</p>
+       <p>APRIL</p>
+        <p>AUG</p>
+        <p>OCT</p>
+    </div>
+  </div>
+</div>
+
+
+</div>
+<!--/.Accordion wrapper-->
+
+
+
+</div>
+
+
+    <div class="col-md-8">
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+    
+        <th scope="col">Total Sessions (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+ 
+      <td>124<span class="badge badge-danger ml-2">9%</span></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+  
+      <td>124<span class="badge badge-danger ml-2">9%</span></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry </td>
+      <td>Bird</td>
+
+      <td>124 <span class="badge badge-danger ml-2">9%</span> </td>
+        
+    </tr>
+  </tbody>
+</table>
+
+
+</div>
+
+
+  </div>
+</div>
+
+	
+
+	</div>
+
+	</main>
+
+
+	<!-- content -->
+
+	<!-- footer  -->
+	<footer th:replace="fragments/footer :: footer"> </footer>
+	<!-- footer -->
+
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" th:src="@{~/js/popper.min.js}"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" th:src="@{~/js/bootstrap.min.js}"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" th:src="@{~/js/mdb.js}"></script>
+	<script type="text/javascript" th:src="@{~/js/custom.js}"></script>
+
+</body>
+</html>

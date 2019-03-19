@@ -4,23 +4,36 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import com.mum.repository.UserRepository;
+import com.mum.service.UserService;
 
 
 
 
 @Configuration
 @EnableWebSecurity
+
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
+@EnableJpaRepositories(basePackageClasses = UserRepository.class)
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter   {
+	
+	
+	@Autowired
+	private UserService userService;
 	
 	  @Autowired
 	    private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -43,11 +56,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 	                .authoritiesByUsernameQuery(rolesQuery)
 	                .dataSource(dataSource)
 	                .passwordEncoder(bCryptPasswordEncoder);
+	       
 	    }
 	
 	    @Override
 	    protected void configure(HttpSecurity http) throws Exception {
-
+	    	 
 	        http.authorizeRequests()
 		        .antMatchers("/login","/h2-console/**","/font/**","/js/**","/css/**","/img/**").permitAll()
 		        .antMatchers("faculty/**").hasAuthority("FACULTY").anyRequest()
@@ -67,6 +81,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 		        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		        .logoutSuccessUrl("/login").and().exceptionHandling()
 		        .accessDeniedPage("/access-denied");
+    		
+    		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 	    }
 	    
 	    @Override
@@ -76,7 +92,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 //	                .antMatchers("/resources/**");
 	    }
 	    
-	    
+	
+
 	    
 
 }

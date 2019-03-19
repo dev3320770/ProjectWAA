@@ -2,6 +2,7 @@ package com.mum.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,16 +13,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 @Entity
-public class Block {
+public class Block implements Serializable {
+
+	/**
+	* 
+	*/
+	private static final long serialVersionUID = 2897153111630115854L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
 	
 	 	@Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -122,4 +133,7 @@ public class Block {
 			}
 		}
 
+	public void addSession(Session session) {
+		this.sessions.add(session);
+	}
 }
