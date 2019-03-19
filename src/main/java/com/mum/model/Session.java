@@ -28,18 +28,16 @@ public class Session {
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    @Column(name = "session_id")
 	    private long id;	
-	    @NotNull(message = "{NotNull.err}")
+//	    @NotNull(message = "{NotNull.err}")
 	    private LocalDate sessionDate;
-	    @NotNull(message = "{NotNull.err}")
+//	    @NotNull(message = "{NotNull.err}")
 	    private LocalDateTime sessionStartTime;  
 //	    @NotNull(message = "{NotNull.err}")
 //	    private LocalDate sessionEndTime;
-	    @NotEmpty(message = "{NotEmpty.err}")
 	    private SessionType sessionType;
 	    
-	    @NotNull(message="Need to specify block")
-	    @ManyToOne
-	    @JoinColumn(name="block_id")
+	    @ManyToOne(cascade = CascadeType.ALL)
+	    @JoinColumn(name = "block_id")
 	    private Block block;
 	    
 	   // @OneToMany(cascade=CascadeType.ALL)
@@ -149,6 +147,11 @@ public class Session {
 			
 			public Session build() {
 				return session;
+			}
+
+			public SessionBuilder withBlock(Block block) {
+				// TODO Auto-generated method stub
+				return null;
 			}
 			
 		}	    

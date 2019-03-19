@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 
@@ -18,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+
 @Entity
 public class Block {
 	
@@ -25,17 +27,16 @@ public class Block {
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    @Column(name = "block_id")
 	    private long id;
-	    @NotEmpty(message = "{NotEmpty.err}")
+//	    @NotEmpty(message = "{NotEmpty.err}")
 	    private String name;
 	    private String description;	
-	    @NotNull(message = "{NotNull.err}")
+//	    @NotNull(message = "{NotNull.err}")
 	    private LocalDate startDate;	    
-	    @NotNull(message = "{NotNull.err}")
+//	    @NotNull(message = "{NotNull.err}")
 	    private LocalDate endDate;	   
 	    
-	    @Valid
-	    @OneToMany(cascade=CascadeType.ALL, mappedBy="block")
-	    @Fetch(FetchMode.JOIN)	  
+	    @OneToMany(cascade = CascadeType.ALL)
+	    @Fetch(FetchMode.JOIN)
 	    private List<Session> sessions;
 		
 	    public long getId() {
@@ -77,6 +78,12 @@ public class Block {
 				session.setSessionBlock(this);
 			}
 		}
+		public void addSession(Session session) {
+			sessions.add(session);
+		}
+		public void removeSession(Session session) {
+			sessions.remove(session);
+		}
 		
 		public static class BlockBuilder {
 			private Block block;
@@ -109,12 +116,7 @@ public class Block {
 				block.setEndDate(endDate);
 				return this;
 			}
-			
-			public BlockBuilder withSessions(List<Session> sessions) {
-				block.setSessions(sessions);
-				return this;
-			}
-			
+	
 			public Block build() {
 				return block;
 			}
