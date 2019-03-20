@@ -172,13 +172,35 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		}
 	}
 	
+	private List<Student> students;
+	
 	private void generateStudents() {
+		students = new ArrayList<>();
 		List<String> studentNames = studentService.getStudentNames();
 		for(String name : studentNames) {
 			Student student = generateStudent(name);
+			students.add(student);
 			System.out.println("ADDING ..... " + student.getFirstName() + " " + student.getLastName());
 			studentService.save(student);
 		}
+	}
+	
+	
+	private boolean duplicateId(String id) {
+		for (Student student : students) {
+			if (student.getStudentId() == id)
+				return true;
+		}
+		return false;
+	}
+	
+	// If creating over 10000 students then there is a chance of infinte loop
+	private String generateRandomStudentId() {
+		String studentId = "98" + (int)((Math.random()*8900)+1100);
+		while(duplicateId(studentId)) {
+			studentId = "98" + (int)((Math.random()*8900)+1100);
+		}
+		return studentId;
 	}
 	
 	private Student generateStudent(String name) {
@@ -191,6 +213,7 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		String fLast = (firstName.split("")[0]+lastName).toLowerCase();
 		student.setEmail(fLast +"@mum.edu");
 		student.setEntryDate(getRandomEntryDate());
+		student.setStudentId(generateRandomStudentId());
 		
 		// create a user for student
 		User user = userService.createUser(firstName, lastName);
@@ -205,5 +228,10 @@ public class DataGeneratorImpl implements DataGeneratorService {
 	private LocalDate getRandomEntryDate() {
 		List<LocalDate> entryDates = studentService.getEntryDates();
 		return entryDates.get(new Random().nextInt(entryDates.size()));
+	}
+	
+	private void assignStudentsToCourses() {
+		List<Student> students = studentService.findAll();
+		
 	}
 }
