@@ -49,34 +49,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
+    <tr th:each="faculty , itterator: ${falculty}">
+      <th scope="row" th:text="${itterator.index+1}">1</th>
+      <td th:text="${faculty.firstName}">Mark</td>
+      <td th:text="${faculty.lastName}">Otto</td>
       <td>
       <a th:href="@{/course/details}"> <span class="badge badge-primary">Algorithm</span></a>
      <span class="badge badge-primary">MPP</span>
        </td>
      
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>
-     <span class="badge badge-primary">WAA</span>
-     <span class="badge badge-primary">MPP</span>
-       </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry </td>
-      <td>Bird</td>
-     <td>
- <span class="badge badge-primary">MWA</span>
-     <span class="badge badge-primary">MPP</span>
-       </td>
-    </tr>
+   
   </tbody>
 </table>
 
