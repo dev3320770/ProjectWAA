@@ -48,7 +48,6 @@ public class DataGeneratorImpl implements DataGeneratorService {
 	
 		Block block = new BlockBuilder()
 							.withName(blockName)
-							.withDescription(blockName + " block, 2019")
 							.withStartDate(startDate)
 							.withEndDate(endDate)
 							.build();
