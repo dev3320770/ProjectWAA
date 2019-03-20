@@ -14,12 +14,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
+
 public class Student implements Serializable {
 	/**
 	* 
@@ -28,6 +30,8 @@ public class Student implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	private String studentId;
 
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String firstName;
@@ -61,6 +65,16 @@ public class Student implements Serializable {
 		this.id = id;
 	}
 
+
+	
+	
+	public String getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -123,5 +137,14 @@ public class Student implements Serializable {
 	public void addSessionTransaction(SessionTransaction sessionTransaction) {
 		this.sessionTransactions.add(sessionTransaction);
 	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", entryDate=" + entryDate + ", email=" + email + ", course=" + course + ", sessionTransactions="
+				+ sessionTransactions + ", user=" + user + "]";
+	}
+	
+	
 
 }
