@@ -40,6 +40,10 @@ public class Block implements Serializable {
 	    @OneToMany(cascade = CascadeType.ALL)
 	    @Fetch(FetchMode.JOIN)
 	    private List<Session> sessions;
+	    
+	    @OneToMany(cascade = CascadeType.ALL)
+	    @Fetch(FetchMode.JOIN)
+	    private List<Course> courses;
 		
 	    public long getId() {
 			return id;
@@ -85,6 +89,18 @@ public class Block implements Serializable {
 		}
 		public void removeSession(Session session) {
 			sessions.remove(session);
+		}
+		
+		public void addCourse(Course course) {
+			courses.add(course);
+		}
+		
+		public void removeCourse(Course course) {
+			courses.remove(course);
+		}
+		
+		public List<Course> getCourses() {
+			return courses;
 		}
 		
 		public static class BlockBuilder {

@@ -46,7 +46,7 @@ public class Faculty implements Serializable {
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String title;
 
-	@OneToOne(mappedBy = "faculty", cascade = CascadeType.ALL)
+	//@OneToOne(mappedBy = "faculty", cascade = CascadeType.ALL)
 	private Course course;
 
 	@OneToOne(cascade = CascadeType.ALL)

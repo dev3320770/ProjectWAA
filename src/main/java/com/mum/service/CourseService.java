@@ -14,5 +14,5 @@ public interface CourseService {
 	List<Course> findAll();
 	long count();
 	boolean existsById(Long id);
-
+	List<String> getAllCourseNames();
 }

@@ -8,5 +8,5 @@ import com.mum.model.Session;
 public interface DataGeneratorService{
 	public void initializeBlocksAndSessions();
 	public Block generateBlock(int month);
-	public List<Session> generateSessions(Block block);
+	public void generateSessions(Block block);
 }

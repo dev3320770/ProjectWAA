@@ -50,7 +50,7 @@ public class Student implements Serializable {
 	@Email
 	private String email;
 
-	@ManyToOne
+	//@ManyToOne
 	private Course course;
 
 	@Valid

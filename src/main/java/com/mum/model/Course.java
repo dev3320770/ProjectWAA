@@ -37,7 +37,6 @@ public class Course implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private long id;
-	private long demoID;
 
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String code;
@@ -46,19 +45,20 @@ public class Course implements Serializable {
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String description;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "block_id")
 	private Block block;
 
-	@Valid
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "faculty_id", nullable = false)
-	private Faculty faculty;
+//	@Valid
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "faculty_id", nullable = false)
+//	private Faculty faculty;
 
-	@Valid
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(cascade = CascadeType.ALL)
-	@Fetch(FetchMode.JOIN)
-	private Set<Student> students;
+//	@Valid
+//	@LazyCollection(LazyCollectionOption.FALSE)
+//	@OneToMany(cascade = CascadeType.ALL)
+//	@Fetch(FetchMode.JOIN)
+//	private Set<Student> students;
 
 	public long getId() {
 		return id;
@@ -66,14 +66,6 @@ public class Course implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public long getDemoID() {
-		return demoID;
-	}
-
-	public void setDemoID(long demoID) {
-		this.demoID = demoID;
 	}
 
 	public String getCode() {
@@ -108,24 +100,23 @@ public class Course implements Serializable {
 		this.block = block;
 	}
 
-	public Faculty getFaculty() {
-		return faculty;
-	}
-
-	public void setFaculty(Faculty faculty) {
-		this.faculty = faculty;
-	}
-
-	public Set<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(Set<Student> students) {
-		this.students = students;
-	}
-
-	public void addStudent(Student student) {
-		this.students.add(student);
-	}
-
+//	public Faculty getFaculty() {
+//		return faculty;
+//	}
+//
+//	public void setFaculty(Faculty faculty) {
+//		this.faculty = faculty;
+//	}
+//
+//	public Set<Student> getStudents() {
+//		return students;
+//	}
+//
+//	public void setStudents(Set<Student> students) {
+//		this.students = students;
+//	}
+//
+//	public void addStudent(Student student) {
+//		this.students.add(student);
+//	}
 }
