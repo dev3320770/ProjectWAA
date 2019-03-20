@@ -18,13 +18,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.mum.repository.UserRepository;
 
-
+		
+			
 
 
 @Configuration
 @EnableWebSecurity
 
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity( securedEnabled = true, jsr250Enabled = true)
 @EnableJpaRepositories(basePackageClasses = UserRepository.class)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter   {
 	
@@ -60,10 +61,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter   {
 	    	 
 	        http.authorizeRequests()
 		        .antMatchers("/login","/h2-console/**","/font/**","/js/**","/css/**","/img/**").permitAll()
-		        .antMatchers("faculty/**").hasAuthority("FACULTY").anyRequest()
+		        .antMatchers("/faculty/**").hasAuthority("FACULTY").anyRequest()
 		        .authenticated()
 		        .and()
 	            .authorizeRequests();
+	
 	        
 	        http.csrf().disable();
 	        
@@ -88,6 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter   {
 //	                .antMatchers("/resources/**");
 	    }
 	    
+	
 	
 
 	    

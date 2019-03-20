@@ -11,62 +11,30 @@ import com.mum.service.StudentService;
 
 @Service
 public class StudentServiceImpl implements StudentService {
-@Autowired
+	@Autowired
 	StudentRepository studentRepository;
 
-public Student save(Student s) {
-	return studentRepository.save(s);
-}
+	@Override
+	public Student save(Student s) {
+		return studentRepository.save(s);
+	}
 
-public List<Student> findAll() {
-	
-	return (List<Student>) studentRepository.findAll();
-}	
-	
-//     public int getTotalSessionsPossible(long studentid) {
-//    	 
-//		
-//		return 0;
-//	}
-//     public int getTotalSessionsAttended(long studentid) {
-// 		
-// 		return 0;
-// 	}
-//	
-//     public  double getTotalAttributePercentAttendance(long studentid) {
-//  		
-//  		return 0;
-//  	}
-//     
-//     public   List<Block> getBlocksByStudentID(long studentid) {
-//   		
-//   		return new ArrayList<Block>();
-//   	}
-//		 
-//     public int getNoSessionsInBlock(long sessionid) {
-//    		
-//    		return 0;
-//    	}
-//	 
-//     public int getNoDaysPresentInBlock(long sessionid,long studentNo) {
-// 		
-// 		return 0;
-// 	}
-//     
-//     public double getPercentageAttendedInBlock(long Sessionid,long studentNo) {
-//  		
-//  		return 0;
-//  	}
-//     
-//     public double getExtraCreditPointsInBlock(long Sessionid,long studentNo) {
-//   		
-//   		return 0;
-//   	}
+	@Override
+	public List<Student> findAll() {
+
+		return (List<Student>) studentRepository.findAll();
+	}
 
 	@Override
 	public Student findById(long id) {
-		
+
 		return studentRepository.findById(id).get();
 	}
-	
+
+	@Override
+	public Student findByStudentId(String studentId) {
+		// TODO Auto-generated method stub
+		return studentRepository.findByStudentId(studentId);
+	}
+
 }
