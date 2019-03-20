@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mum.data.init.DataGeneratorService;
 import com.mum.model.Session;
-import com.mum.service.DataGeneratorService;
 import com.mum.service.SessionService;
 
 @Controller

@@ -4,20 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Faculty implements Serializable {
@@ -28,30 +23,26 @@ public class Faculty implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
 	private Long id;
-
-	private long demoID;
 
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String firstName;
 
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String lastName;
-	@Column(name = "email")
+	
 	@Email(message = "{Email.err}")
 	private String email;
 
-	@Column(name = "title")
-	@NotEmpty(message = "{NotEmpty.err}")
-	private String title;
 
-	//@OneToOne(mappedBy = "faculty", cascade = CascadeType.ALL)
-	private Course course;
+	@ManyToMany(mappedBy = "faculty", cascade = CascadeType.ALL)
+	private List<Course> course;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", nullable = false)
-	private User user_faculty;
+	@OneToOne(cascade =	CascadeType.ALL)
+	@JoinColumn(name = "user_id",nullable = false)
+
+	private User user;
+	
 
 	public Long getId() {
 		return id;
@@ -61,13 +52,6 @@ public class Faculty implements Serializable {
 		this.id = id;
 	}
 
-	public long getDemoID() {
-		return demoID;
-	}
-
-	public void setDemoID(long demoID) {
-		this.demoID = demoID;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -93,28 +77,22 @@ public class Faculty implements Serializable {
 		this.email = email;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Course getCourse() {
+	public List<Course> getCourse() {
 		return course;
 	}
 
-	public void setCourse(Course course) {
+	public void setCourse(List<Course> course) {
 		this.course = course;
 	}
 
-	public User getUser_faculty() {
-		return user_faculty;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUser_faculty(User user_faculty) {
-		this.user_faculty = user_faculty;
+	public void setUser(User user) {
+		this.user = user;
 	}
+
+
 
 }

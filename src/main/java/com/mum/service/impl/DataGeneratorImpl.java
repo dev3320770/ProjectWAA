@@ -6,20 +6,20 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mum.data.init.BlockBuilder;
+import com.mum.data.init.DataGeneratorService;
+import com.mum.data.init.SessionBuilder;
 import com.mum.model.Block;
 import com.mum.model.Session;
 import com.mum.model.SessionType;
-import com.mum.model.Block.BlockBuilder;
-import com.mum.model.Course;
-import com.mum.model.Session.SessionBuilder;
-import com.mum.service.CourseService;
-import com.mum.service.DataGeneratorService;
 import com.mum.service.SessionService;
+
+
+
 
 @Service
 public class DataGeneratorImpl implements DataGeneratorService {

@@ -2,11 +2,6 @@ package com.mum.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,11 +15,11 @@ public class Location implements Serializable {
 	* 
 	*/
 	private static final long serialVersionUID = 982774411555669258L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
 	private int id;
-	private long demoID;
+	
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String name;
 
@@ -38,13 +33,6 @@ public class Location implements Serializable {
 		this.id = id;
 	}
 
-	public long getDemoID() {
-		return demoID;
-	}
-
-	public void setDemoID(long demoID) {
-		this.demoID = demoID;
-	}
 
 	public String getName() {
 		return name;
