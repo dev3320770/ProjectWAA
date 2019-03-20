@@ -1,5 +1,6 @@
 package com.mum.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.mum.repository.FacultyRepository;
 import com.mum.service.FacultyService;
 @Service
 public class FacultyServiceImpl implements FacultyService{
+	
 	@Autowired
 	FacultyRepository facultyRepository;
 
@@ -48,5 +50,19 @@ public class FacultyServiceImpl implements FacultyService{
 		// TODO Auto-generated method stub
 		return facultyRepository.existsById(id);
 	}
-
+	
+	@Override
+	public List<String> getFacultyNames() {
+		List<String> names = new ArrayList<>();
+		names.add("Tina Xing");
+		names.add("Joseph Lerman");
+		names.add("Rakesh Shresta");
+		names.add("Renuka Mohanraj");
+		names.add("Joe Bruen");
+		names.add("Paul Corazza");
+		names.add("Asaad Saad");
+		names.add("Rene DeJong");
+		names.add("Obina Kalu");
+		return names;
+	}
 }

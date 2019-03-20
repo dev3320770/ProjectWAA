@@ -6,7 +6,5 @@ import com.mum.model.Block;
 import com.mum.model.Session;
 
 public interface DataGeneratorService{
-	public void initializeBlocksAndSessions();
-	public Block generateBlock(int month);
-	public void generateSessions(Block block);
+	public void initialize();
 }

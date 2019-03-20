@@ -1,5 +1,8 @@
 package com.mum.service;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import com.mum.model.Student;
@@ -7,10 +10,11 @@ import com.mum.model.Student;
 
 public interface StudentService {
 	
-	 Student save(Student s);
-	 List<Student> findAll();
-	 Student findById(long id);
-	 Student findByStudentId(String studentId);
+	public Student save(Student s);
+	public List<Student> findAll();
+	public Student findById(long id);
+	public List<String> getStudentNames();
+	public List<LocalDate> getEntryDates();	 
 	 
 //	 int getTotalSessionsPossible(long studentid);
 //	 int getTotalSessionsAttended(long studentid);

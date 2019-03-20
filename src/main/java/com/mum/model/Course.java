@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
@@ -39,8 +40,8 @@ public class Course implements Serializable {
 	private Block block;
 
 	@Valid
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Faculty> faculty;
+	@ManyToOne
+	private Faculty faculty;
 
 	@Valid
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -90,11 +91,11 @@ public class Course implements Serializable {
 
 
 
-	public List<Faculty> getFaculty() {
+	public Faculty getFaculty() {
 		return faculty;
 	}
 
-	public void setFaculty(List<Faculty> faculty) {
+	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
 	}
 
