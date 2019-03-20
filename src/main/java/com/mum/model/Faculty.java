@@ -1,15 +1,18 @@
 package com.mum.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -35,12 +38,11 @@ public class Faculty implements Serializable {
 	private String email;
 
 
-	@ManyToMany(mappedBy = "faculty", cascade = CascadeType.ALL)
-	private List<Course> course;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Course> courses;
 
 	@OneToOne(cascade =	CascadeType.ALL)
 	@JoinColumn(name = "user_id",nullable = false)
-
 	private User user;
 	
 
@@ -78,11 +80,11 @@ public class Faculty implements Serializable {
 	}
 
 	public List<Course> getCourse() {
-		return course;
+		return courses;
 	}
 
 	public void setCourse(List<Course> course) {
-		this.course = course;
+		this.courses = course;
 	}
 
 	public User getUser() {
@@ -93,6 +95,11 @@ public class Faculty implements Serializable {
 		this.user = user;
 	}
 
+	public void addCourse(Course course) {
+		if (courses == null)
+			courses = new ArrayList<>();
+		courses.add(course);
+	}
 
 
 }

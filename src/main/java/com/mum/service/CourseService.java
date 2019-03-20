@@ -15,4 +15,5 @@ public interface CourseService {
 	long count();
 	boolean existsById(Long id);
 	List<String> getAllCourseNames();
+	List<String> getRandomCourseNames();
 }
