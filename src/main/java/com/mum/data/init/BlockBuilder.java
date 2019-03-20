@@ -21,10 +21,7 @@ public class BlockBuilder {
 		return this;
 	}
 	
-	public BlockBuilder withDescription(String description) {
-		block.setDescription(description);
-		return this;
-	}
+
 	
 	public BlockBuilder withStartDate(LocalDate startDate) {
 		block.setStartDate(startDate);

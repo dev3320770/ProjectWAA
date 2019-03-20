@@ -24,8 +24,7 @@ public class Block implements Serializable {
 	private long id;
 
 	private String name;
-	
-	private String description;
+
 
 	private LocalDate startDate;
 
@@ -54,13 +53,6 @@ public class Block implements Serializable {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public LocalDate getStartDate() {
 		return startDate;
