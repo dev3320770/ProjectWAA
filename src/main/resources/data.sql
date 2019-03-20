@@ -27,5 +27,3 @@ insert into student ( id , student_id,email , entry_date , first_name , last_nam
 insert into student ( id , student_id, email , entry_date , first_name , last_name , user_id ) values (2,'986683','tutqa@gmail.com',now(),'Festus','Iipito',7)
 
 
-insert into faculty ( id ,email ,first_name ,last_name ,user_id ) value (1, 'faculty1, ' one', 5);
-insert into faculty ( id ,email ,first_name ,last_name ,user_id ) value (2, 'faculty2, ' two', 8);
