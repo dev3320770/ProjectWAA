@@ -13,6 +13,7 @@ public interface StudentService {
 	public Student save(Student s);
 	public List<Student> findAll();
 	public Student findById(long id);
+	public Student findByStudentId(String id);
 	public List<String> getStudentNames();
 	public List<LocalDate> getEntryDates();	 
 	 

@@ -22,7 +22,11 @@ public class StudentServiceImpl implements StudentService {
 	
 	public List<Student> findAll() {
 		return (List<Student>) studentRepository.findAll();
-	}	
+	}
+	
+	public Student findByStudentId(String studentId) {
+		return studentRepository.findByStudentId(studentId);
+	}
 	
 //     public int getTotalSessionsPossible(long studentid) {
 //    	 
