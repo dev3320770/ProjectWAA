@@ -23,7 +23,7 @@ public class Dashboard {
 	@RequestMapping(value= {"/","/dashboard"}, method=RequestMethod.GET)
 	public String UserDashboard(Principal principal, Model model) {
 		
-		User user = userService.findUserByEmail(principal.getName());
+		User user = userService.findUserByUsername(principal.getName());
 		System.out.println(user.getFirstName());
 		model.addAttribute("user" , user);
 		

@@ -1,4 +1,4 @@
-package com.mum.service;
+package com.mum.data.init;
 
 import java.util.List;
 

@@ -28,8 +28,10 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User findUserByUsername(String username) {
+    	
+//    	Long userId = Long.parseLong(username);
+        return userRepository.findByUsername(username);
     }
 
     public User saveUser(User user) {

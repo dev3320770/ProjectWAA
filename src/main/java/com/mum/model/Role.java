@@ -17,11 +17,13 @@ public class Role implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -8279835310748660794L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "role_id")
 	private int id;
-	@Column(name = "role")
+	
+
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String role;
 
@@ -41,8 +43,5 @@ public class Role implements Serializable {
 		this.role = role;
 	}
 
-	@Override
-	public String toString() {
-		return "Role [id=" + id + ", role=" + role + "]";
-	}
+
 }

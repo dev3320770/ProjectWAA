@@ -1,6 +1,7 @@
 package com.mum.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,13 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Table(name = "user")
@@ -32,14 +33,23 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	private int id;
+	
+	@Column(name = "username")
+	@NotEmpty(message = "{NotEmpty.err}")
+	@UniqueElements
+	private String username;
+	
 	@Column(name = "email")
 	@Email(message = "{Email.err}")
 	@NotEmpty(message = "{NotEmpty.err}")
+	@UniqueElements
 	private String email;
+	
 	@Column(name = "password")
 	@Length(min = 5, message = "{Length.err}")
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String password;
+	
 	@Column(name = "firstName")
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String firstName;
@@ -54,11 +64,7 @@ public class User implements Serializable {
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
-	@OneToOne(mappedBy = "user_faculty", cascade = CascadeType.ALL)
-	private Faculty faculty;
 
-	@OneToOne(mappedBy = "user_student", cascade = CascadeType.ALL)
-	private Student student;
 
 	public int getId() {
 		return id;
@@ -66,6 +72,16 @@ public class User implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {
@@ -95,10 +111,8 @@ public class User implements Serializable {
 	public int getActive() {
 		return active;
 	}
+	
 
-	public void setActive(int active) {
-		this.active = active;
-	}
 
 	public Set<Role> getRoles() {
 		return roles;
@@ -108,6 +122,12 @@ public class User implements Serializable {
 		this.roles = roles;
 	}
 
+	public void setActive(int active) {
+		this.active = active;
+	}
+
+
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -116,20 +136,6 @@ public class User implements Serializable {
 		this.firstName = firstName;
 	}
 
-	public Faculty getFaculty() {
-		return faculty;
-	}
 
-	public void setFaculty(Faculty faculty) {
-		this.faculty = faculty;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
 
 }

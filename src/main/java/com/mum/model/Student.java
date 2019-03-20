@@ -1,31 +1,22 @@
 package com.mum.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Student implements Serializable {
@@ -35,33 +26,31 @@ public class Student implements Serializable {
 	private static final long serialVersionUID = 8485169243133898497L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "studentId")
 	private long id;
-	private long demoID;
-	@NotEmpty(message = "{NotEmpty.err}")
-	private String code;
 
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String firstName;
+	
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String lastName;
+	
 	@NotNull(message = "{NotNull.err}")
 	private LocalDate entryDate;
+	
 	@Email
 	private String email;
 
-	@ManyToOne
-	private Course course;
+	@Valid
+	@ManyToMany
+	private List<Course> course;
 
 	@Valid
-	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = CascadeType.ALL)
-	@Fetch(FetchMode.JOIN)
-	private Set<SessionTransaction> sessionTransactions;
+	private List<SessionTransaction> sessionTransactions;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", nullable = false)
-	private User user_student;
+	private User user;
 
 	public long getId() {
 		return id;
@@ -71,21 +60,6 @@ public class Student implements Serializable {
 		this.id = id;
 	}
 
-	public long getDemoID() {
-		return demoID;
-	}
-
-	public void setDemoID(long demoID) {
-		this.demoID = demoID;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -119,28 +93,30 @@ public class Student implements Serializable {
 		this.email = email;
 	}
 
-	public Course getCourse() {
+
+	
+	public List<Course> getCourse() {
 		return course;
 	}
 
-	public void setCourse(Course course) {
+	public void setCourse(List<Course> course) {
 		this.course = course;
 	}
 
-	public Set<SessionTransaction> getSessionTransactions() {
+	public List<SessionTransaction> getSessionTransactions() {
 		return sessionTransactions;
 	}
 
-	public void setSessionTransactions(Set<SessionTransaction> sessionTransactions) {
+	public void setSessionTransactions(List<SessionTransaction> sessionTransactions) {
 		this.sessionTransactions = sessionTransactions;
 	}
 
-	public User getUser_student() {
-		return user_student;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUser_student(User user_student) {
-		this.user_student = user_student;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void addSessionTransaction(SessionTransaction sessionTransaction) {
