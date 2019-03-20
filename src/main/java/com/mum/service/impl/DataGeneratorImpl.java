@@ -4,6 +4,7 @@ import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,18 @@ public class DataGeneratorImpl implements DataGeneratorService {
 
 	@Autowired 
 	SessionService sessionService;
+	
+	@Autowired
+	CourseService courseService;
 
 	@Override
 	public void initializeBlocksAndSessions() {
 		// create blocks for each month of the year
 		for(int i = 1; i <= 12; ++i) {
 			System.out.println(".... adding block");
-			generateBlock(i);
+			Block block = generateBlock(i);
+			generateSessions(block);
+			generateCourses(block);
 		}
 	}
 	
@@ -51,15 +57,27 @@ public class DataGeneratorImpl implements DataGeneratorService {
 							.withStartDate(startDate)
 							.withEndDate(endDate)
 							.build();
-		
-		List<Session> blockSessions = generateSessions(block);
-		block.setSessions(blockSessions);
 		return block;
 	}
+
 	
+	private void generateCourses(Block block) {
+		List<String> courseNames = courseService.getAllCourseNames();
+		int numberOfCoursesInCurrentBlock = (int)Math.random()*courseNames.size();
+		Collections.shuffle(courseNames);
+		for(int i = 0; i < numberOfCoursesInCurrentBlock; ++i) {
+			Course course = new Course();
+			String courseName = courseNames.get(i);
+			course.setName(courseName);
+			course.setCode(courseName + " code");
+			course.setDescription(courseName + " description");
+			course.setBlock(block);
+			courseService.save(course);
+		}	
+	}
+
 	@Override
-	public List<Session> generateSessions(Block block) {
-		List<Session> sessions = new ArrayList<>();
+	public void generateSessions(Block block) {
 		int year = block.getStartDate().getYear();
 		int month = block.getStartDate().getMonthValue();
 		int startHour = 9;
@@ -73,17 +91,8 @@ public class DataGeneratorImpl implements DataGeneratorService {
 									.withType(SessionType.MORNING_MEDITATION)
 									.inBlock(block)
 									.build();
-			sessions.add(session);
-			updateSessionDatabase(session);
-		}
-		return sessions;
-	}
-	
-	private void updateSessionDatabase(Session session) {
-		System.out.println("SAVING SESSION ............................");
-		Long sessionId = session.getId();
-		Session existingSession = sessionService.findSessionById(sessionId);
-		if(existingSession == null)
+			block.addSession(session);
 			sessionService.save(session);
+		}
 	}
 }

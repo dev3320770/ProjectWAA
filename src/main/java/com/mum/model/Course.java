@@ -56,7 +56,6 @@ public class Course implements Serializable {
 		this.id = id;
 	}
 
-
 	public String getCode() {
 		return code;
 	}
