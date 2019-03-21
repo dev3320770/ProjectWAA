@@ -63,7 +63,7 @@ public class Default {
 	public String courseDetails() {
 	
 		
-		return "course/courseDetails";
+		return "admin/courseDetails";
 	}
 	
 	

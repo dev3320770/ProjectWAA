@@ -101,13 +101,5 @@ public class Faculty implements Serializable {
 		courses.add(course);
 	}
 
-	@Override
-	public String toString() {
-		return "Faculty [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", courses=" + courses + ", user=" + user + "]";
-	}
-	
-	
-
 
 }
