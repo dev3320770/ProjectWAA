@@ -77,10 +77,5 @@ public class CourseServiceImpl implements CourseService{
 		Collections.shuffle(courseNames);
 		return courseNames;
 	}
-	
-	@Override
-	public List<Course> findAllCoursesByBlock(long blockId) {
-		return courseRepository.findAllCoursesByBlock(blockId);
-	}
 
 }

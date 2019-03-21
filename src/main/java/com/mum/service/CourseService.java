@@ -16,5 +16,4 @@ public interface CourseService {
 	boolean existsById(Long id);
 	List<String> getAllCourseNames();
 	List<String> getRandomCourseNames();
-	List<Course> findAllCoursesByBlock(long blockId);
 }
