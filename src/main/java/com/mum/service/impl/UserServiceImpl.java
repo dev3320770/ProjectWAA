@@ -40,15 +40,13 @@ public class UserServiceImpl implements UserService{
         return userRepository.save(user);
     }
     
-    public User createUser(String firstName, String lastName) {
+    public User createUser(String firstName, String lastName, String username, String password) {
     	User user = new User();
+    	String email = (firstName.charAt(0) + lastName).toLowerCase() + "@mum.edu";
+    	
     	user.setFirstName(firstName);
     	user.setLastName(lastName);
-    	
-    	String username = (firstName.charAt(0) + lastName).toLowerCase();
-    	String password = "12345";
-    	
-    	user.setEmail(username + "@mum.edu");
+    	user.setEmail(email);
     	user.setUsername(username);
     	user.setPassword(bCryptPasswordEncoder.encode(password));
     	return user;

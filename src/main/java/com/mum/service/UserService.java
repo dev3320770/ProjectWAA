@@ -15,5 +15,5 @@ import com.mum.repository.UserRepository;
 public interface UserService {
     public User findUserByUsername(String username);
     public User saveUser(User user);
-    public User createUser(String firstName, String lastName);
+    public User createUser(String firstName, String lastName, String username, String password);
 }

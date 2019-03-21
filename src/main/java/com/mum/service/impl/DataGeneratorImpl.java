@@ -16,6 +16,13 @@ import com.mum.data.init.DataGeneratorService;
 import com.mum.data.init.SessionBuilder;
 import com.mum.model.Block;
 import com.mum.model.Course;
+import com.mum.model.Session;
+import com.mum.model.SessionType;
+import com.mum.service.CourseService;
+import com.mum.service.SessionService;
+
+
+
 import com.mum.model.Faculty;
 import com.mum.model.Role;
 import com.mum.model.Session;
@@ -138,7 +145,7 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		
 		// create a user for faculty
 		
-		User user = userService.createUser(firstName, lastName);
+		User user = userService.createUser(firstName, lastName, fLast, "12345");
 		user.setActive(1);
 		user.addRole(roleService.getRole("faculty"));
 		
@@ -191,9 +198,11 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		String fLast = (firstName.split("")[0]+lastName).toLowerCase();
 		student.setEmail(fLast +"@mum.edu");
 		student.setEntryDate(getRandomEntryDate());
+		String studentId = 986610 + students.size() + "";
+		student.setStudentId(studentId);
 		
 		// create a user for student
-		User user = userService.createUser(firstName, lastName);
+		User user = userService.createUser(firstName, lastName, studentId, "12345");
 		user.setActive(1);
 		user.addRole(roleService.getRole("student"));
 		
@@ -205,5 +214,28 @@ public class DataGeneratorImpl implements DataGeneratorService {
 	private LocalDate getRandomEntryDate() {
 		List<LocalDate> entryDates = studentService.getEntryDates();
 		return entryDates.get(new Random().nextInt(entryDates.size()));
+	}
+	
+	private void assignStudentsToCourses() {
+		List<Student> students = studentService.findAll();
+		List<Block> blocks = blockService.findAll();
+		
+		for(Block block : blocks) {
+			List<Course> blockCourses = courseService.findAllCoursesByBlock(block.getId());
+			assignStudentsToCourses(students, blockCourses);
+		}	
+	}
+	
+	private void assignStudentsToCourses(List<Student> students, List<Course> courses) {
+		Collections.shuffle(students);
+		Collections.shuffle(courses);
+		
+		for(int i = 0; i < students.size(); ++i) {
+			Course course = courses.get(i%courses.size());
+			Student student = students.get(i);
+			student.addCourse(course);
+			course.addStudent(student);
+			studentService.save(student);
+		}
 	}
 }

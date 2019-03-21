@@ -1,7 +1,13 @@
 package com.mum.model;
 
 import java.io.Serializable;
-import java.util.List;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.HashSet;
+
+import java.util.ArrayList;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -26,25 +32,30 @@ public class Course implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@NotEmpty(message = "{NotEmpty.err}")
+	//@NotEmpty(message = "{NotEmpty.err}")
 	private String code;
 	
-	@NotEmpty(message = "{NotEmpty.err}")
+	//@NotEmpty(message = "{NotEmpty.err}")
 	private String name;
 	
-	@NotEmpty(message = "{NotEmpty.err}")
+	//@NotEmpty(message = "{NotEmpty.err}")
 	private String description;
 	
-	@Valid
+	//@Valid
 	@ManyToOne
 	private Block block;
 
-	@Valid
-	@ManyToOne
-	private Faculty faculty;
+
+	//@Valid
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Faculty> faculty;
+
+
 
 	@Valid
-	@ManyToMany(cascade = CascadeType.ALL)
+
+	@ManyToMany(cascade = CascadeType.PERSIST)
+
 	private List<Student> students;
 	
 	

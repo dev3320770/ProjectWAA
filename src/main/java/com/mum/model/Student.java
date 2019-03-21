@@ -46,11 +46,16 @@ public class Student implements Serializable {
 	@Email
 	private String email;
 
-	@Valid
+
 	@ManyToMany
 	private List<Course> course;
 
 	@Valid
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	private List<Course> courses;
+
+
+	//@Valid
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<SessionTransaction> sessionTransactions;
 
