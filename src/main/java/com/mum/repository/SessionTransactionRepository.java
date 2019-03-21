@@ -11,6 +11,6 @@ import com.mum.model.Student;
 public interface SessionTransactionRepository extends CrudRepository<SessionTransaction, Long> {
 	
 	@Query(value="SELECT * FROM Session_Transaction  WHERE student_id = ?1", nativeQuery = true)
-	Student findByStudentId(long id);
+	Student findByStudentId(String id);
 
 }

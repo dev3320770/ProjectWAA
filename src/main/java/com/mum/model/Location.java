@@ -20,7 +20,7 @@ public class Location implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@NotEmpty(message = "{NotEmpty.err}")
+	//@NotEmpty(message = "{NotEmpty.err}")
 	private String name;
 
 	private String Description;

@@ -29,7 +29,7 @@ public class SessionTransaction implements Serializable {
 	@NotNull(message = "{NotNull.err}")
 	private LocalDate checkinDate;
 	
-	@NotEmpty(message = "{NotEmpty.err}")
+//	@NotEmpty(message = "{NotEmpty.err}")
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
@@ -84,7 +84,7 @@ public class SessionTransaction implements Serializable {
 	public String toString() {
 		String transaction = "";
 		String studentId = student.getStudentId();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
 		transaction += studentId.substring(studentId.length()-4) + ","
 					+ session.getSessionDate().format(formatter) + ","
 					+ "AM," + location.getName();

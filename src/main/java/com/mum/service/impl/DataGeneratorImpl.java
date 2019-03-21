@@ -20,6 +20,7 @@ import com.mum.data.init.SessionBuilder;
 import com.mum.model.Block;
 import com.mum.model.Course;
 import com.mum.model.Faculty;
+import com.mum.model.Location;
 import com.mum.model.Role;
 import com.mum.model.Session;
 import com.mum.model.SessionTransaction;
@@ -29,6 +30,7 @@ import com.mum.model.User;
 import com.mum.service.BlockService;
 import com.mum.service.CourseService;
 import com.mum.service.FacultyService;
+import com.mum.service.LocationService;
 import com.mum.service.RoleService;
 import com.mum.service.SessionService;
 import com.mum.service.SessionTransactionService;
@@ -46,6 +48,7 @@ public class DataGeneratorImpl implements DataGeneratorService {
 	@Autowired StudentService studentService;
 	@Autowired SessionService sessionService;
 	@Autowired SessionTransactionService sessionTransactionService;
+	@Autowired LocationService locationService;
 
 	@Override
 	public void initialize() {
@@ -66,6 +69,9 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		// create students
 		generateStudents();
 		assignStudentsToCourses();
+		
+		// generate locations
+		generateLocations();
 		
 		// generate data to feed system
 		exportTextData();
@@ -288,7 +294,6 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		List<String> meditationSessions = generateSessionTransactions();
 		String text = "";
 		for(String entry : meditationSessions) {
-			System.out.println(entry);
 			text += entry + "\n";
 		}
 		 return text;
@@ -299,10 +304,12 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		List<Session> meditationSessions = sessionService.findAll();
 		List<Student> students = studentService.findAll();
 		
+		Location location = locationService.findByName("DB").get(0);
+		
 		for(Session session : meditationSessions) {
 			List<Student> randomStudents = getRandomAttendees(students);
 			for(Student student : randomStudents) {
-				SessionTransaction transaction = sessionTransactionService.createTransaction(student,session);
+				SessionTransaction transaction = sessionTransactionService.createTransaction(student,session,location);
 				sessionEntries.add(transaction.toString());
 			}
 		}
@@ -313,5 +320,12 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		int missingStudents = (int)(Math.random()*3);		// everyday only maximum of 3 people miss meditation
 		Collections.shuffle(allStudents);
 		return allStudents.subList(missingStudents, allStudents.size());
+	}
+	
+	private void generateLocations() {
+		Location location = new Location();
+		location.setName("DB");
+		location.setDescription("Dalby Hall");
+		locationService.save(location);
 	}
 }
