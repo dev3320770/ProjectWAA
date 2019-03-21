@@ -139,7 +139,7 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		
 		// create a user for faculty
 		
-		User user = userService.createUser(firstName, lastName);
+		User user = userService.createUser(firstName, lastName, fLast, "12345");
 		user.setActive(1);
 		user.addRole(roleService.getRole("faculty"));
 		
@@ -213,10 +213,11 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		String fLast = (firstName.split("")[0]+lastName).toLowerCase();
 		student.setEmail(fLast +"@mum.edu");
 		student.setEntryDate(getRandomEntryDate());
-		student.setStudentId(986610 + students.size() + "");
+		String studentId = 986610 + students.size() + "";
+		student.setStudentId(studentId);
 		
 		// create a user for student
-		User user = userService.createUser(firstName, lastName);
+		User user = userService.createUser(firstName, lastName, studentId, "12345");
 		user.setActive(1);
 		user.addRole(roleService.getRole("student"));
 		
@@ -237,8 +238,7 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		for(Block block : blocks) {
 			List<Course> blockCourses = courseService.findAllCoursesByBlock(block.getId());
 			assignStudentsToCourses(students, blockCourses);
-		}
-		
+		}	
 	}
 	
 	private void assignStudentsToCourses(List<Student> students, List<Course> courses) {
