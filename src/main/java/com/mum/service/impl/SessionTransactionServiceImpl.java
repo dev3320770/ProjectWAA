@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mum.model.Location;
+import com.mum.model.Session;
 import com.mum.model.SessionTransaction;
+import com.mum.model.Student;
 import com.mum.repository.SessionTransactionRepository;
 import com.mum.service.SessionTransactionService;
 @Service
@@ -56,5 +59,18 @@ public class SessionTransactionServiceImpl implements SessionTransactionService{
 		return (List<SessionTransaction>) sessionTransactionRepository.findByStudentId(id);
 	}
 	
-
+	@Override
+	public SessionTransaction createTransaction(Student student, Session session) {
+		SessionTransaction sessionTransaction = new SessionTransaction();
+		sessionTransaction.setStudent(student);
+		sessionTransaction.setSession(session);
+		sessionTransaction.setCheckinDate(session.getSessionDate());
+		
+		Location dalbyHall = new Location();
+		dalbyHall.setName("DB");
+		dalbyHall.setDescription("Dalby Hall");
+		
+		sessionTransaction.setLocation(dalbyHall);
+		return sessionTransaction;
+	}
 }

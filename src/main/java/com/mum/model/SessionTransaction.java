@@ -2,6 +2,8 @@ package com.mum.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Formatter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -79,6 +81,14 @@ public class SessionTransaction implements Serializable {
 		this.student = student;
 	}
 
-	
+	public String toString() {
+		String transaction = "";
+		String studentId = student.getStudentId();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		transaction += studentId.substring(studentId.length()-4) + ","
+					+ session.getSessionDate().format(formatter) + ","
+					+ "AM," + location.getName();
+		return transaction;
+	}
 
 }
