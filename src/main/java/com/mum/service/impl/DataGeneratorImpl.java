@@ -57,6 +57,7 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		
 		// create students
 		generateStudents();
+		assignStudentsToCourses();
 	}
 	
 	public Block generateBlock(int month) {
@@ -194,14 +195,13 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		return false;
 	}
 	
-	// If creating over 10000 students then there is a chance of infinte loop
-	private String generateRandomStudentId() {
-		String studentId = "98" + (int)((Math.random()*8900)+1100);
-		while(duplicateId(studentId)) {
-			studentId = "98" + (int)((Math.random()*8900)+1100);
-		}
-		return studentId;
-	}
+//	private String generateNextStudentId() {
+//		String studentId = "98" + (int)((Math.random()*8900)+1100);
+//		while(duplicateId(studentId)) {
+//			studentId = "98" + (int)((Math.random()*8900)+1100);
+//		}
+//		return studentId;
+//	}
 	
 	private Student generateStudent(String name) {
 		Student student = new Student();
@@ -213,7 +213,7 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		String fLast = (firstName.split("")[0]+lastName).toLowerCase();
 		student.setEmail(fLast +"@mum.edu");
 		student.setEntryDate(getRandomEntryDate());
-		student.setStudentId(generateRandomStudentId());
+		student.setStudentId(986610 + students.size() + "");
 		
 		// create a user for student
 		User user = userService.createUser(firstName, lastName);
@@ -232,6 +232,25 @@ public class DataGeneratorImpl implements DataGeneratorService {
 	
 	private void assignStudentsToCourses() {
 		List<Student> students = studentService.findAll();
+		List<Block> blocks = blockService.findAll();
 		
+		for(Block block : blocks) {
+			List<Course> blockCourses = courseService.findAllCoursesByBlock(block.getId());
+			assignStudentsToCourses(students, blockCourses);
+		}
+		
+	}
+	
+	private void assignStudentsToCourses(List<Student> students, List<Course> courses) {
+		Collections.shuffle(students);
+		Collections.shuffle(courses);
+		
+		for(int i = 0; i < students.size(); ++i) {
+			Course course = courses.get(i%courses.size());
+			Student student = students.get(i);
+			student.addCourse(course);
+			course.addStudent(student);
+			studentService.save(student);
+		}
 	}
 }

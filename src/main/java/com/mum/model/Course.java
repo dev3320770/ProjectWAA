@@ -1,6 +1,7 @@
 package com.mum.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -44,7 +45,7 @@ public class Course implements Serializable {
 	private Faculty faculty;
 
 	@Valid
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<Student> students;
 	
 	
@@ -108,6 +109,8 @@ public class Course implements Serializable {
 	}
 
 	public void addStudent(Student student) {
+		if (students == null) 
+			students = new ArrayList<>();
 		this.students.add(student);
 	}
 
