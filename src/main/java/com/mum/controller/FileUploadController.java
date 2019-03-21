@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.security.Principal;
 import java.nio.file.Files;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -47,8 +48,7 @@ public class FileUploadController {
 	@Autowired
 	 private final StorageService storageService;
 	@Autowired
-	UserService userService;
-	 
+	UserService userService; 
 	
 	
 	 
@@ -82,6 +82,10 @@ public class FileUploadController {
 	        Path filepath = storageService.load(fileName);
 	        String ss=filepath.toString();
 	        
+	        String dataManual="manual";
+	        String dataAuto="auto";
+	        String dataType="";
+	        
 	        try (Scanner scanner = new Scanner(new File(ss))) {
 				while (scanner.hasNext()){
 					
@@ -114,7 +118,8 @@ public class FileUploadController {
 							sessionTransactionRepository.save(st);
 						}
 					}
-					System.out.println(scanner.nextLine());
+					}
+					
 				}
 
 			} catch (IOException e) {
