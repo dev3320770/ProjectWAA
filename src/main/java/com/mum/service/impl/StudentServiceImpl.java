@@ -13,6 +13,7 @@ import com.mum.service.StudentService;
 
 @Service
 public class StudentServiceImpl implements StudentService {
+	
 	@Autowired
 	StudentRepository studentRepository;
 

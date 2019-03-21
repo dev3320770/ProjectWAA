@@ -2,6 +2,7 @@ package com.mum.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -47,8 +48,8 @@ public class Student implements Serializable {
 	private String email;
 
 	@Valid
-	@ManyToMany
-	private List<Course> course;
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	private List<Course> courses;
 
 	@Valid
 	@OneToMany(cascade = CascadeType.ALL)
@@ -111,12 +112,12 @@ public class Student implements Serializable {
 
 
 	
-	public List<Course> getCourse() {
-		return course;
+	public List<Course> getCourses() {
+		return courses;
 	}
 
-	public void setCourse(List<Course> course) {
-		this.course = course;
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
 	}
 
 	public List<SessionTransaction> getSessionTransactions() {
@@ -142,8 +143,14 @@ public class Student implements Serializable {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", entryDate=" + entryDate + ", email=" + email + ", course=" + course + ", sessionTransactions="
+				+ ", entryDate=" + entryDate + ", email=" + email + ", course=" + courses + ", sessionTransactions="
 				+ sessionTransactions + ", user=" + user + "]";
+	}
+
+	public void addCourse(Course course) {
+		if (courses == null)
+			courses = new ArrayList<>();
+		courses.add(course);
 	}
 	
 	
