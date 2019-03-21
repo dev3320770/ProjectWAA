@@ -1,5 +1,8 @@
 package com.mum.service.impl;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,6 +22,7 @@ import com.mum.model.Course;
 import com.mum.model.Faculty;
 import com.mum.model.Role;
 import com.mum.model.Session;
+import com.mum.model.SessionTransaction;
 import com.mum.model.SessionType;
 import com.mum.model.Student;
 import com.mum.model.User;
@@ -26,6 +30,8 @@ import com.mum.service.BlockService;
 import com.mum.service.CourseService;
 import com.mum.service.FacultyService;
 import com.mum.service.RoleService;
+import com.mum.service.SessionService;
+import com.mum.service.SessionTransactionService;
 import com.mum.service.StudentService;
 import com.mum.service.UserService;
 
@@ -38,6 +44,8 @@ public class DataGeneratorImpl implements DataGeneratorService {
 	@Autowired RoleService roleService;
 	@Autowired UserService userService;
 	@Autowired StudentService studentService;
+	@Autowired SessionService sessionService;
+	@Autowired SessionTransactionService sessionTransactionService;
 
 	@Override
 	public void initialize() {
@@ -58,6 +66,9 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		// create students
 		generateStudents();
 		assignStudentsToCourses();
+		
+		// generate data to feed system
+		exportTextData();
 	}
 	
 	public Block generateBlock(int month) {
@@ -252,5 +263,55 @@ public class DataGeneratorImpl implements DataGeneratorService {
 			course.addStudent(student);
 			studentService.save(student);
 		}
+	}
+	
+	private void exportTextData() {
+		BufferedWriter writer = null;
+	    try {
+	        writer = new BufferedWriter(new FileWriter("output.txt"));
+	        writer.write(generateTextData());
+	        System.out.println("CURRENT PATH: " + System.getProperty("user.dir"));
+	    } catch (IOException e) {
+	        System.err.println(e);
+	    } finally {
+	        if (writer != null) {
+	            try {
+	                writer.close();
+	            } catch (IOException e) {
+	                System.err.println(e);
+	            }
+	        }
+	    }
+	}
+	
+	private String generateTextData() {
+		List<String> meditationSessions = generateSessionTransactions();
+		String text = "";
+		for(String entry : meditationSessions) {
+			System.out.println(entry);
+			text += entry + "\n";
+		}
+		 return text;
+	}
+	
+	private List<String> generateSessionTransactions() {
+		List<String> sessionEntries = new ArrayList<>();
+		List<Session> meditationSessions = sessionService.findAll();
+		List<Student> students = studentService.findAll();
+		
+		for(Session session : meditationSessions) {
+			List<Student> randomStudents = getRandomAttendees(students);
+			for(Student student : randomStudents) {
+				SessionTransaction transaction = sessionTransactionService.createTransaction(student,session);
+				sessionEntries.add(transaction.toString());
+			}
+		}
+		return sessionEntries;
+	}
+
+	private List<Student> getRandomAttendees(List<Student> allStudents) {
+		int missingStudents = (int)(Math.random()*3);		// everyday only maximum of 3 people miss meditation
+		Collections.shuffle(allStudents);
+		return allStudents.subList(missingStudents, allStudents.size());
 	}
 }

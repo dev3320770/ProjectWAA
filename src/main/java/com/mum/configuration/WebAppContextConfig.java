@@ -64,7 +64,7 @@ public class WebAppContextConfig implements WebMvcConfigurer {
 	       return firewall;
 	   }
 	   
-
+ 
 	   @Bean
 	    CommandLineRunner init(StorageService storageService) {
 	        return (args) -> {
@@ -72,8 +72,5 @@ public class WebAppContextConfig implements WebMvcConfigurer {
 	            storageService.init();
 	        };
 	    }
-	   
-	  
-
 
 }
