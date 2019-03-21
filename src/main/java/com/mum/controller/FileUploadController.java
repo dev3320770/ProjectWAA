@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.security.Principal;
 import java.nio.file.Files;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -46,8 +47,7 @@ public class FileUploadController {
 	@Autowired
 	 private final StorageService storageService;
 	@Autowired
-	UserService userService;
-	 
+	UserService userService; 
 	
 	
 	 
@@ -81,12 +81,28 @@ public class FileUploadController {
 	        Path filepath = storageService.load(fileName);
 	        String ss=filepath.toString();
 	        
+	        String dataManual="manual";
+	        String dataAuto="auto";
+	        String dataType="";
+	        
 	        try (Scanner scanner = new Scanner(new File(ss))) {
 				while (scanner.hasNext()){
 					
 					String line=scanner.nextLine();
 					List<String> columns = Arrays.asList(line.split(","));
 					
+					// parsing first element in the list to check Data Type manual or Auto
+					try{				
+						LocalDate dt=LocalDate.parse(columns.get(0));
+						dataType=dataManual;
+					}
+					
+				 catch (DateTimeException  e) {
+					 dataType=dataAuto;
+				 }	     
+					
+					if(dataType==dataAuto)
+					{
 					long studentId=Long.parseLong(columns.get(0));
 					//LocalDate localDate = LocalDate.parse(date, formatter);
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
@@ -98,7 +114,7 @@ public class FileUploadController {
 					if(li.size()!=0)
 					{
 					
-					Session session=sessionService.findSessionBySessionDate(date).get(0);
+					Session session=li.get(0);
 					
 					SessionTransaction st=new SessionTransaction();
 					st.setSession(session);
@@ -107,12 +123,45 @@ public class FileUploadController {
 					st.setLocation(loc1);
 					st.setStudent(studentRepository.findById(studentId));
 					
+					if(st.getSession()!=null && st.getLocation()!=null && st.getStudent()!=null ) {
+					sessionTransactionRepository.save(st);
+					  }
+					 }
+					}
+					
+					
+					if(dataType==dataManual)
+					{
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+						LocalDate date=LocalDate.parse(columns.get(0),formatter);
+						
+					
+					String strStudentID=columns.get(1).replace("-","");
+					
+					long studentId=Long.parseLong(strStudentID);									
+					
+					List<Session> li=sessionService.findSessionBySessionDate(date);
+					if(li.size()!=0)
+					{
+					
+					Session session=li.get(0);
+					
+					SessionTransaction st=new SessionTransaction();
+					st.setSession(session);
+					st.setCheckinDate(date);					
+					Location loc1=new Location();
+					loc1.setId(1);
+					loc1.setName("DB");
+					st.setLocation(loc1);
+					st.setStudent(studentRepository.findById(studentId));
+					
 					if(st.getSession()!=null && st.getLocation()!=null && st.getStudent()!=null )
 					{
 					sessionTransactionRepository.save(st);
 					}
 					}
-					System.out.println(scanner.nextLine());
+					}
+					
 				}
 
 			} catch (IOException e) {
