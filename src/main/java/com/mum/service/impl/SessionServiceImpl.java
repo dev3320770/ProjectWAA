@@ -1,6 +1,5 @@
 package com.mum.service.impl;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,11 +59,8 @@ public class SessionServiceImpl implements SessionService {
 	public List<Session> getAllSessionsInBlock (long blockId) {
 		return sessionRepository.getAllSessionInBlock(blockId);
 	}
-	@Override
-	public List<Session> findSessionBySessionDate(LocalDate sessionDate) {
-		return sessionRepository.findSessionBySessionDate(sessionDate);
-		
-	}
+	
+	
 	// -------------------------- DATA GENERATOR --------------------------------- //
 	
 	

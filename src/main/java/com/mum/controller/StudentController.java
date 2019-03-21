@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.mum.model.Student;
+import com.mum.service.CourseService;
+import com.mum.service.SessionTransactionService;
 import com.mum.service.StudentService;
 
 @Controller
@@ -18,6 +20,12 @@ import com.mum.service.StudentService;
 public class StudentController {
 	@Autowired
 	StudentService studentService;
+	
+	@Autowired
+	SessionTransactionService sessionTransactionService;
+	
+//	@Autowired
+//	CourseService courseService;
 	
 	
 	@RequestMapping(value="/students", method=RequestMethod.GET)
@@ -35,9 +43,11 @@ public class StudentController {
 	
 	@RequestMapping(value="/students/details/", method=RequestMethod.GET)
 	public String studentDetails(@RequestParam("studentId") String studentId, Model model) {
-		Student student = studentService.findByStudentId(studentId);
-		System.out.println(student);
-		model.addAttribute("student", student);
+		Long studentSystemId = (Long) studentService.findByStudentId(studentId).getId();
+		System.out.println( studentService.findByStudentId(studentId));
+		model.addAttribute("student", studentService.findByStudentId(studentId));
+		model.addAttribute("tmSessions", sessionTransactionService.findByStudentId(studentSystemId));
+		
 	
 		
 		return "student/studentDetails";

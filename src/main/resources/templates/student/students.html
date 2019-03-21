@@ -22,7 +22,7 @@
 <link th:href="@{~/css/style.css}" rel="stylesheet">
 </head>
 <body>
-
+<div class="page-content">
 	<!-- navigation -->
 	<nav  th:replace="fragments/nav :: nav" >
 	This nav content is going
@@ -67,6 +67,7 @@
    
   </tbody>
 </table>
+<br>
 
 <!-- <nav aria-label="Page navigation example"> -->
 <!--   <ul class="pagination pagination-circle pg-blue"> -->
@@ -112,6 +113,6 @@
 	<!-- MDB core JavaScript -->
 	<script type="text/javascript" th:src="@{~/js/mdb.js}"></script>
 	<script type="text/javascript" th:src="@{~/js/custom.js}"></script>
-
+</div>
 </body>
 </html>

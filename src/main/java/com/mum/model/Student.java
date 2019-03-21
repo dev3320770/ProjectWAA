@@ -2,6 +2,7 @@ package com.mum.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,14 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 
@@ -45,16 +47,11 @@ public class Student implements Serializable {
 	@Email
 	private String email;
 
-
-	@ManyToMany
-	private List<Course> course;
-
 	@Valid
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	private List<Course> courses;
+	public List<Course> courses;
 
-
-	//@Valid
+	@Valid
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<SessionTransaction> sessionTransactions;
 
@@ -115,12 +112,12 @@ public class Student implements Serializable {
 
 
 	
-	public List<Course> getCourse() {
-		return course;
+	public List<Course> getCourses() {
+		return courses;
 	}
 
-	public void setCourse(List<Course> course) {
-		this.course = course;
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
 	}
 
 	public List<SessionTransaction> getSessionTransactions() {
@@ -146,8 +143,14 @@ public class Student implements Serializable {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", entryDate=" + entryDate + ", email=" + email + ", course=" + course + ", sessionTransactions="
+				+ ", entryDate=" + entryDate + ", email=" + email + ", course=" + courses + ", sessionTransactions="
 				+ sessionTransactions + ", user=" + user + "]";
+	}
+
+	public void addCourse(Course course) {
+		if (courses == null)
+			courses = new ArrayList<>();
+		courses.add(course);
 	}
 	
 	
