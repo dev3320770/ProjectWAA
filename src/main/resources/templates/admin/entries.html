@@ -23,7 +23,7 @@
 <link th:href="@{~/css/style.css}" rel="stylesheet">
 </head>
 <body>
-
+<p> <a href="upload">click to go to upload page</a></p> 
 	<!-- navigation -->
 	<nav th:replace="fragments/nav :: nav">This nav content is going
 		to be replaced.</nav>
@@ -34,7 +34,7 @@
 	<main class="mt-5"> <!--Main container-->
 	<div class="container">
 
-		<h3>Static content for prototyping purposes only</h3>
+		<h3>Student Entries</h3>
 		<br>
 		<div   id="sucess"></div>
 		<div  id="error"></div>
@@ -136,7 +136,7 @@
 									<th scope="col">Student ID</th>
 								<th scope="col">First Name</th>
 								<th scope="col">Last Name</th>
-
+								<th scope="col">Entry Date</th>
 								<th scope="col">Total Sessions (%)</th>
 							</tr>
 						</thead>
@@ -146,8 +146,8 @@
 								 <td><a th:href="@{~/students/details/(studentId=${student.studentId})}" th:text="${student.studentId}">986669</a></td>
 								<td th:text="${student.firstName}">Mark</td>
 								<td th:text="${student.lastName}">Otto</td>
-
-								<td>124<span class="badge badge-danger ml-2">9%</span></td>
+								<td th:text="${#temporals.monthName(student.entryDate) + ' ' + #temporals.year(student.entryDate)}">Otto</td>
+								<td th:text="${#lists.size(student.sessionTransactions)}">124<span class="badge badge-danger ml-2">9%</span></td>
 							</tr>
 							
 						</tbody>

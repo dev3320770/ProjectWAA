@@ -16,6 +16,15 @@ import com.mum.data.init.DataGeneratorService;
 import com.mum.data.init.SessionBuilder;
 import com.mum.model.Block;
 import com.mum.model.Course;
+<<<<<<< HEAD
+import com.mum.model.Session;
+import com.mum.model.SessionType;
+import com.mum.service.CourseService;
+import com.mum.service.SessionService;
+
+
+
+=======
 import com.mum.model.Faculty;
 import com.mum.model.Role;
 import com.mum.model.Session;
@@ -28,6 +37,7 @@ import com.mum.service.FacultyService;
 import com.mum.service.RoleService;
 import com.mum.service.StudentService;
 import com.mum.service.UserService;
+>>>>>>> master
 
 @Service
 public class DataGeneratorImpl implements DataGeneratorService {

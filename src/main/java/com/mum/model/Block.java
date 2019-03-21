@@ -2,6 +2,8 @@ package com.mum.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -78,6 +80,13 @@ public class Block implements Serializable {
 		this.sessions = sessions;
 	}
 
+<<<<<<< HEAD
+	public void addSession(Session session) {
+		// TODO Auto-generated method stub
+		this.sessions.add(session);
+		
+	}	
+=======
 	public List<Course> getCourses() {
 		return courses;
 	}
@@ -88,6 +97,7 @@ public class Block implements Serializable {
 
 	
 	
+>>>>>>> master
 	
 	
 }

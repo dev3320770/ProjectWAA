@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.mum.data.init.InitData;
 import com.mum.model.User;
 import com.mum.service.UserService;
+
+
 
 @Controller
 @SessionAttributes("user")
@@ -19,7 +22,8 @@ public class Default {
 	@Autowired
 	UserService userService;
 	
-	
+//	@Autowired
+//	private InitData initData;
 	@RequestMapping(value= {"/","/dashboard"}, method=RequestMethod.GET)
 	public String UserDashboard(Principal principal, Model model) {
 		
@@ -32,12 +36,22 @@ public class Default {
 		System.out.println(principal);
 		
 		if(role.equals("[ADMIN]")) {
+<<<<<<< HEAD:src/main/java/com/mum/controller/Dashboard.java
+			//initData.initialize();
+			return "admin/entries";
+		}
+		
+		if (role.equals("[FACULTY]")) {
+			return "admin/facultyDashboard";
+		}	
+=======
 			return "redirect:/entries";
 		}
 		
 		if (role.equals("[FACULTY]")) {
 			return "redirect:/facultyDashboard";
 		}
+>>>>>>> master:src/main/java/com/mum/controller/Default.java
 		
 		return "dashboard";
 	}
@@ -49,7 +63,7 @@ public class Default {
 	public String courseDetails() {
 	
 		
-		return "admin/courseDetails";
+		return "course/courseDetails";
 	}
 	
 	

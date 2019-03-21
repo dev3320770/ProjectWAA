@@ -12,14 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 
@@ -46,11 +47,17 @@ public class Student implements Serializable {
 	@Email
 	private String email;
 
+<<<<<<< HEAD
+	//@Valid
+	@ManyToMany
+	private List<Course> course;
+=======
 	@Valid
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<Course> courses;
+>>>>>>> master
 
-	@Valid
+	//@Valid
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<SessionTransaction> sessionTransactions;
 
