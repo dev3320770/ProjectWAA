@@ -49,7 +49,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr th:each="faculty , itterator: ${falculty}">
+    <tr th:each="faculty , itterator: ${faculty}">
       <th scope="row" th:text="${itterator.index+1}">1</th>
       <td th:text="${faculty.firstName}">Mark</td>
       <td th:text="${faculty.lastName}">Otto</td>

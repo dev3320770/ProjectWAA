@@ -11,6 +11,7 @@ public interface SessionTransactionService {
 	List<SessionTransaction> saveAll(List<SessionTransaction> sessionTransactions);
 	SessionTransaction findById(long id);
 	List<SessionTransaction> findAll();
+	List<SessionTransaction> findByStudentId(Long id);
 	long count();
 	boolean existsById(Long id);
 

@@ -111,4 +111,11 @@ public class Course implements Serializable {
 		this.students.add(student);
 	}
 
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", code=" + code + ", name=" + name  + "]";
+	}
+	
+	
+
 }

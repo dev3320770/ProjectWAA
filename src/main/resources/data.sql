@@ -27,3 +27,5 @@ insert into student ( id , student_id,email , entry_date , first_name , last_nam
 insert into student ( id , student_id, email , entry_date , first_name , last_name , user_id ) values (2,'986683','tutqa@gmail.com',now(),'Festus','Iipito',7)
 
 
+insert into location ( id , name ,description ) values (1, 'DH','Darby Hall');
+insert into location ( id , name ,description ) values (2, 'HH','HH');
