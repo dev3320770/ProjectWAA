@@ -38,7 +38,7 @@ $('.form-inline').submit(function(event) {
 								     ' <th scope="col">First Name</th>'+
 								     ' <th scope="col">Last Name</th>'+
 								     ' <th scope="col">Entry Date</th>'+
-								       ' <th scope="col">Total Sessions</th>'+
+								
 								    '</tr>'+
 								  '</thead>'+
 								  '<tbody>'+
@@ -48,7 +48,7 @@ $('.form-inline').submit(function(event) {
 								      '<td>'+student.firstName+'</td>'+
 								      '<td>'+student.lastName+'</td>'+
 								      '<td>'+student.entryDate+'</td>'+
-								      '<td>'+student.sessionTransactions.length+'</td>'+
+
 								      '</tbody>'+
 								      '</table>'+
 								    '</tr>';

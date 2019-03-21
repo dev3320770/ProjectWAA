@@ -15,10 +15,17 @@ public class RestFullController {
 	
 	@GetMapping(value = "api/students/details/{studentId}")
 	public @ResponseBody Student getStudentByID(@PathVariable("studentId") String studentId) {
-		System.out.println(studentId);
+//		System.out.println(studentId);
+		Student results = new Student();
+		
 		Student stu = studentService.findByStudentId(studentId);
-		System.out.println(stu);
-	return stu;
+		results.setStudentId(stu.getStudentId());
+		results.setFirstName(stu.getFirstName());
+		results.setLastName(stu.getLastName());
+		results.setEntryDate(stu.getEntryDate());
+	
+//		System.out.println(stu);
+	return results;
 	}
 
 }

@@ -62,12 +62,6 @@ public class FileUploadController {
 	    	User user = userService.findUserByUsername(principal.getName());
 			System.out.println(user.getFirstName());
 			model.addAttribute("user" , user);
-	    	
-//	    	   model.addAttribute("files", storageService.loadAll().map(
-//	                   path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
-//	                           "serveFile", path.getFileName().toString()).build().toString())
-//	                   .collect(Collectors.toList()));
-
 	        return "admin/uploadFile";
 	    }
 	    
