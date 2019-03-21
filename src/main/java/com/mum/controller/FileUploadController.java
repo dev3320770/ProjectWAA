@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mum.model.Location;
 import com.mum.model.Session;
 import com.mum.model.SessionTransaction;
+import com.mum.model.Student;
 import com.mum.model.User;
 import com.mum.service.LocationService;
 import com.mum.service.SessionService;
@@ -40,7 +41,7 @@ public class FileUploadController {
 	@Autowired
 	private LocationService locationService;
 	@Autowired
-	private StudentService studentRepository;
+	private StudentService studentService;
 	@Autowired
 	private SessionTransactionService sessionTransactionRepository;
 	@Autowired
@@ -87,7 +88,7 @@ public class FileUploadController {
 					String line=scanner.nextLine();
 					List<String> columns = Arrays.asList(line.split(","));
 					
-					long studentId=Long.parseLong(columns.get(0));
+					String studentId= "98" + columns.get(0);
 					//LocalDate localDate = LocalDate.parse(date, formatter);
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
 					LocalDate date=LocalDate.parse(columns.get(1),formatter);
@@ -97,20 +98,21 @@ public class FileUploadController {
 					List<Session> li=sessionService.findSessionBySessionDate(date);
 					if(li.size()!=0)
 					{
-					
-					Session session=sessionService.findSessionBySessionDate(date).get(0);
-					
-					SessionTransaction st=new SessionTransaction();
-					st.setSession(session);
-					st.setCheckinDate(date);					
-					Location loc1=locationService.findByName(loc).get(0);
-					st.setLocation(loc1);
-					st.setStudent(studentRepository.findById(studentId));
-					
-					if(st.getSession()!=null && st.getLocation()!=null && st.getStudent()!=null )
-					{
-					sessionTransactionRepository.save(st);
-					}
+						Session session = sessionService.findSessionBySessionDate(date).get(0);
+						System.out.println("Session: " + session);
+						Student student = studentService.findByStudentId(studentId);
+						System.out.println("Student: " + student);
+						Location location = locationService.findByName(loc).get(0);
+						System.out.println("Location: " + location);
+						
+						if (session != null && student != null && location != null) {
+							SessionTransaction st=new SessionTransaction();
+							st.setSession(session);
+							st.setCheckinDate(date);					
+							st.setLocation(location);
+							st.setStudent(student);
+							sessionTransactionRepository.save(st);
+						}
 					}
 					System.out.println(scanner.nextLine());
 				}

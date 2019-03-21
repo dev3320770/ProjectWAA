@@ -60,17 +60,12 @@ public class SessionTransactionServiceImpl implements SessionTransactionService{
 	}
 	
 	@Override
-	public SessionTransaction createTransaction(Student student, Session session) {
+	public SessionTransaction createTransaction(Student student, Session session, Location location) {
 		SessionTransaction sessionTransaction = new SessionTransaction();
 		sessionTransaction.setStudent(student);
 		sessionTransaction.setSession(session);
 		sessionTransaction.setCheckinDate(session.getSessionDate());
-		
-		Location dalbyHall = new Location();
-		dalbyHall.setName("DB");
-		dalbyHall.setDescription("Dalby Hall");
-		
-		sessionTransaction.setLocation(dalbyHall);
+		sessionTransaction.setLocation(location);
 		return sessionTransaction;
 	}
 }
