@@ -5,27 +5,16 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.Valid;
-
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Course implements Serializable {
@@ -34,32 +23,33 @@ public class Course implements Serializable {
 	* 
 	*/
 	private static final long serialVersionUID = -6251239061685918298L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
 	private long id;
-	private long demoID;
 
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String code;
+	
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String name;
+	
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String description;
-
+	
+	@Valid
 	@ManyToOne
 	private Block block;
 
 	@Valid
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "faculty_id", nullable = false)
-	private Faculty faculty;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Faculty> faculty;
 
 	@Valid
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(cascade = CascadeType.ALL)
-	@Fetch(FetchMode.JOIN)
-	private Set<Student> students;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Student> students;
+	
+	
 
 	public long getId() {
 		return id;
@@ -67,14 +57,6 @@ public class Course implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public long getDemoID() {
-		return demoID;
-	}
-
-	public void setDemoID(long demoID) {
-		this.demoID = demoID;
 	}
 
 	public String getCode() {
@@ -109,19 +91,21 @@ public class Course implements Serializable {
 		this.block = block;
 	}
 
-	public Faculty getFaculty() {
+
+
+	public List<Faculty> getFaculty() {
 		return faculty;
 	}
 
-	public void setFaculty(Faculty faculty) {
+	public void setFaculty(List<Faculty> faculty) {
 		this.faculty = faculty;
 	}
 
-	public Set<Student> getStudents() {
+	public List<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(Set<Student> students) {
+	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
 

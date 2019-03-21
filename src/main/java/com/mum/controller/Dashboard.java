@@ -2,22 +2,35 @@ package com.mum.controller;
 
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.mum.model.User;
+import com.mum.service.UserService;
 
 import com.mum.data.init.Data_Init;
 
 @Controller
+@SessionAttributes("user")
 public class Dashboard {
+	@Autowired
+	UserService userService;
 	
 	
 	@RequestMapping(value= {"/","/dashboard"}, method=RequestMethod.GET)
-	public String UserDashboard(Principal principal) {
-	
+	public String UserDashboard(Principal principal, Model model) {
+		
+		User user = userService.findUserByUsername(principal.getName());
+		System.out.println(user.getFirstName());
+		model.addAttribute("user" , user);
+		
 		String role=  ((Authentication) principal).getAuthorities().toString();
+		
 		System.out.println(principal);
 		
 		if(role.equals("[ADMIN]")) {

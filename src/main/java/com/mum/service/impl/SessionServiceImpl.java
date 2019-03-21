@@ -1,6 +1,7 @@
 package com.mum.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,15 +9,17 @@ import org.springframework.stereotype.Service;
 import com.mum.model.Session;
 import com.mum.repository.SessionRepository;
 import com.mum.service.SessionService;
+
 @Service
 public class SessionServiceImpl implements SessionService {
 	
 	@Autowired
-	SessionRepository sessionRepository;
-
+	private SessionRepository sessionRepository;
+	
 	@Override
 	public Session save(Session session) {
 		// TODO Auto-generated method stub
+		System.out.println("Calling repository save method ..... ");
 		return sessionRepository.save(session);
 	}
 
@@ -27,9 +30,11 @@ public class SessionServiceImpl implements SessionService {
 	}
 
 	@Override
-	public Session findById(long id) {
-		// TODO Auto-generated method stub
-		return sessionRepository.findById(id).get();
+	public Session findSessionById(long id) {
+		Optional<Session> sessionOptional = sessionRepository.findById(id);
+		if (sessionOptional.isPresent())
+			return sessionOptional.get();
+		return null;
 	}
 
 	@Override
@@ -45,9 +50,20 @@ public class SessionServiceImpl implements SessionService {
 	}
 
 	@Override
-	public boolean existsById(Long id) {
+	public boolean existsById(long id) {
 		// TODO Auto-generated method stub
 		return sessionRepository.existsById(id);
 	}
+	
+	@Override
+	public List<Session> getAllSessionsInBlock (long blockId) {
+		return sessionRepository.getAllSessionInBlock(blockId);
+	}
+	
+	
+	// -------------------------- DATA GENERATOR --------------------------------- //
+	
+	
+	
 
 }

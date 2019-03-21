@@ -7,5 +7,5 @@ import com.mum.model.Block;
 
 @Repository
 public interface BlockRepository extends CrudRepository<Block, Long> {
-
+	
 }
