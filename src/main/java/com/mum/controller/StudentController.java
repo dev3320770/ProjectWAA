@@ -45,15 +45,15 @@ public class StudentController {
 	
 	@RequestMapping(value="/students/details/", method=RequestMethod.GET)
 	public String studentDetails(@RequestParam("studentId") String studentId, Model model) {
-		Long studentSystemId = (Long) studentService.findByStudentId(studentId).getId();
-		
+//		Student student = studentService.findByStudentId(studentId);
+//		
 		Student myst=studentService.findByStudentId(studentId);
 		
 		List<Course> mylist=myst.getCourses();
 		
-		System.out.println( mylist.stream().map(c->c.getName()).collect(Collectors.toList()));
+		model.addAttribute("courses", mylist.stream().map(c->c.getName()).collect(Collectors.toList()));
 		model.addAttribute("student", studentService.findByStudentId(studentId));
-		model.addAttribute("tmSessions", sessionTransactionService.findByStudentId(studentSystemId));
+		model.addAttribute("tmSessions", sessionTransactionService.findByStudentId(studentId));
 		
 	
 		

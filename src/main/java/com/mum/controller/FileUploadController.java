@@ -118,7 +118,6 @@ public class FileUploadController {
 							sessionTransactionRepository.save(st);
 						}
 					}
-					}
 					
 				}
 

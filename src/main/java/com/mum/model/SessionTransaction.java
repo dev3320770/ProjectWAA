@@ -29,7 +29,7 @@ public class SessionTransaction implements Serializable {
 	@NotNull(message = "{NotNull.err}")
 	private LocalDate checkinDate;
 	
-	@NotEmpty(message = "{NotEmpty.err}")
+//	@NotEmpty(message = "{NotEmpty.err}")
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
