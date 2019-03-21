@@ -1,5 +1,6 @@
 package com.mum.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.mum.model.Course;
+import com.mum.model.SessionTransaction;
 import com.mum.model.Student;
-import com.mum.service.CourseService;
 import com.mum.service.SessionTransactionService;
 import com.mum.service.StudentService;
 
@@ -50,6 +51,12 @@ public class StudentController {
 		Student myst=studentService.findByStudentId(studentId);
 		
 		List<Course> mylist=myst.getCourses();
+		System.out.println(mylist);
+		
+		List<SessionTransaction>  st = sessionTransactionService.findByStudentId(studentId);
+
+		System.out.println(st);
+		
 		
 		model.addAttribute("courses", mylist.stream().map(c->c.getName()).collect(Collectors.toList()));
 		model.addAttribute("student", studentService.findByStudentId(studentId));
