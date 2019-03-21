@@ -1,6 +1,5 @@
 package com.mum.repository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -17,10 +16,5 @@ public interface SessionRepository extends CrudRepository<Session,Long>{
 	
 	@Query("SELECT s FROM Session s where s.block.id = ?1")
 	public List<Session> getAllSessionInBlock(long blockId);
-	
-	
-	@Query("SELECT s FROM Session s where s.sessionDate = ?1")
-	public List<Session> findSessionBySessionDate(LocalDate sessionDate);
-	
 	
 }

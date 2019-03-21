@@ -2,6 +2,7 @@ package com.mum.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
+
 public class Student implements Serializable {
 	/**
 	* 
@@ -27,6 +32,8 @@ public class Student implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	private String studentId;
 
 	@NotEmpty(message = "{NotEmpty.err}")
 	private String firstName;
@@ -40,11 +47,11 @@ public class Student implements Serializable {
 	@Email
 	private String email;
 
-	//@Valid
-	@ManyToMany
-	private List<Course> course;
+	@Valid
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	public List<Course> courses;
 
-	//@Valid
+	@Valid
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<SessionTransaction> sessionTransactions;
 
@@ -60,6 +67,16 @@ public class Student implements Serializable {
 		this.id = id;
 	}
 
+
+	
+	
+	public String getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -95,12 +112,12 @@ public class Student implements Serializable {
 
 
 	
-	public List<Course> getCourse() {
-		return course;
+	public List<Course> getCourses() {
+		return courses;
 	}
 
-	public void setCourse(List<Course> course) {
-		this.course = course;
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
 	}
 
 	public List<SessionTransaction> getSessionTransactions() {
@@ -122,5 +139,20 @@ public class Student implements Serializable {
 	public void addSessionTransaction(SessionTransaction sessionTransaction) {
 		this.sessionTransactions.add(sessionTransaction);
 	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", entryDate=" + entryDate + ", email=" + email + ", course=" + courses + ", sessionTransactions="
+				+ sessionTransactions + ", user=" + user + "]";
+	}
+
+	public void addCourse(Course course) {
+		if (courses == null)
+			courses = new ArrayList<>();
+		courses.add(course);
+	}
+	
+	
 
 }

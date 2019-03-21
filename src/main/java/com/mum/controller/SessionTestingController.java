@@ -35,7 +35,7 @@ public class SessionTestingController {
 	
 	@RequestMapping("/populate")
 	public String populate() {
-		dataGeneratorService.initializeBlocksAndSessions();
+		dataGeneratorService.initialize();
 		System.out.println("DONE DONE DONE DONE DONE");
 		return "login";
 	}

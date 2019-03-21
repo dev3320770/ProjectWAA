@@ -8,7 +8,7 @@ import com.mum.model.User;
 
 
 @Repository("userRepository")
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<User, Long> {
 //    User findByEmail(String email);
     User findByUsername(String username);
 }

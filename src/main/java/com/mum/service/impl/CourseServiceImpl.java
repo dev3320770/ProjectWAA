@@ -1,6 +1,7 @@
 package com.mum.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class CourseServiceImpl implements CourseService{
 		return courseRepository.existsById(id);
 	}
 	
+	@Override
 	public List<String> getAllCourseNames() {
 		List<String> courseNames = new ArrayList<>();
 		courseNames.add("FPP");
@@ -63,6 +65,22 @@ public class CourseServiceImpl implements CourseService{
 		courseNames.add("Big Data");
 		courseNames.add("Career Strategies");
 		return courseNames;
+	}
+	
+	@Override
+	public List<String> getRandomCourseNames() {
+		List<String> courseNames = getAllCourseNames();
+		int numberOfCourses = (int)(Math.random() * courseNames.size());
+		for(int i = 0; i < (courseNames.size() - numberOfCourses); ++i) {
+			courseNames.remove(0);
+		}
+		Collections.shuffle(courseNames);
+		return courseNames;
+	}
+	
+	@Override
+	public List<Course> findAllCoursesByBlock(long blockId) {
+		return courseRepository.findAllCoursesByBlock(blockId);
 	}
 
 }

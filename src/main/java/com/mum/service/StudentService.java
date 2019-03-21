@@ -1,27 +1,21 @@
 package com.mum.service;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import com.mum.model.Block;
-import com.mum.model.Role;
 import com.mum.model.Student;
-import com.mum.model.User;
-import com.mum.repository.RoleRepository;
-import com.mum.repository.UserRepository;
 
 
 public interface StudentService {
 	
-	 Student save(Student s);
-	 List<Student> findAll();
-	 Student findById(long id);	 
+	public Student save(Student s);
+	public List<Student> findAll();
+	public Student findById(long id);
+	public Student findByStudentId(String id);
+	public List<String> getStudentNames();
+	public List<LocalDate> getEntryDates();	 
 	 
 //	 int getTotalSessionsPossible(long studentid);
 //	 int getTotalSessionsAttended(long studentid);

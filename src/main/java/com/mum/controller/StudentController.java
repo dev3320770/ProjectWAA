@@ -1,42 +1,60 @@
 package com.mum.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.mum.model.Student;
+import com.mum.service.CourseService;
+import com.mum.service.SessionTransactionService;
+import com.mum.service.StudentService;
 
 @Controller
-@RequestMapping("/student")
+@SessionAttributes("user")
 public class StudentController {
+	@Autowired
+	StudentService studentService;
+	
+	@Autowired
+	SessionTransactionService sessionTransactionService;
+	
+//	@Autowired
+//	CourseService courseService;
+	
+	
+	@RequestMapping(value="/students", method=RequestMethod.GET)
+	public String getStudents(Model model ,Student student) {
+		List<Student> students = studentService.findAll();
+		for(Student s: students) {
+			System.out.println(s);
+			
+		}
+		
+		model.addAttribute("student", students);
+		
+		return "student/students";
+	}
+	
+	@RequestMapping(value="/students/details/", method=RequestMethod.GET)
+	public String studentDetails(@RequestParam("studentId") String studentId, Model model) {
+		Long studentSystemId = (Long) studentService.findByStudentId(studentId).getId();
+		System.out.println( studentService.findByStudentId(studentId));
+		model.addAttribute("student", studentService.findByStudentId(studentId));
+		model.addAttribute("tmSessions", sessionTransactionService.findByStudentId(studentSystemId));
+		
+	
+		
+		return "student/studentDetails";
+	}
 	
 
-	@RequestMapping(value="/reportform", method=RequestMethod.GET)
-	public String StudentForm() {	
-		
-		
-		    // Cumulative attendance info
-		// Set Attribute Total sessions possible
-		// Set Attribute Total sessions attended
-		// Set Attribute Percent attendance
-		
-		
-		// Populate Block List
-		   // get List Of Blocks id,Name (may be concat sessionStartDate+"-"+sessionEndTime)
-		
-		
 	
-		return "StudentForm";
-	}
-	
-	@RequestMapping(value="/reportform", method=RequestMethod.POST)
-	public @ResponseBody String getReport(@RequestBody @RequestParam("studentid") String studentid,
-			                Model model ) {		
-	
-		return "redirect:/dis";
-	}
-	
+
 
 }

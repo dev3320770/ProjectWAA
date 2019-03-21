@@ -51,9 +51,6 @@ public class LocationServiceImpl implements LocationService {
 		return locationRepository.existsById(id);
 	}
 	
-	@Override
-	public List<Location> findByName(String name){
-	return	locationRepository.findByName(name);
-		
-	}
+	
+
 }

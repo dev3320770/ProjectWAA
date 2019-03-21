@@ -2,19 +2,15 @@ package com.mum.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Block implements Serializable {
@@ -34,9 +30,11 @@ public class Block implements Serializable {
 
 	private LocalDate endDate;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@Fetch(FetchMode.JOIN)
-	private List<Session> sessions ;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Session> sessions;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Course> courses;
 	
 
 	public long getId() {
@@ -80,11 +78,16 @@ public class Block implements Serializable {
 		this.sessions = sessions;
 	}
 
-	public void addSession(Session session) {
-		// TODO Auto-generated method stub
-		this.sessions.add(session);
-		
-	}	
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
+	
+	
 	
 	
 }

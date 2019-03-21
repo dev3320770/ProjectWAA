@@ -10,20 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.mum.data.init.InitData;
 import com.mum.model.User;
 import com.mum.service.UserService;
 
-
-
 @Controller
 @SessionAttributes("user")
-public class Dashboard {
+public class Default {
 	@Autowired
 	UserService userService;
 	
-//	@Autowired
-//	private InitData initData;
+	
 	@RequestMapping(value= {"/","/dashboard"}, method=RequestMethod.GET)
 	public String UserDashboard(Principal principal, Model model) {
 		
@@ -36,53 +32,25 @@ public class Dashboard {
 		System.out.println(principal);
 		
 		if(role.equals("[ADMIN]")) {
-			//initData.initialize();
-			return "admin/entries";
+			return "redirect:/entries";
 		}
 		
 		if (role.equals("[FACULTY]")) {
-			return "admin/facultyDashboard";
-		}	
+			return "redirect:/facultyDashboard";
+		}
 		
 		return "dashboard";
 	}
 	
-	
-	@RequestMapping(value="/admin/students", method=RequestMethod.GET)
-	public String getStudents() {
-	
-		
-		return "admin/students";
-	}
-	
-	
-	@RequestMapping(value="/admin/entries", method=RequestMethod.GET)
-	public String getEntries() {
-	
-		
-		return "admin/entries";
-	}
-	
-	
-	@RequestMapping(value="/admin/faculties", method=RequestMethod.GET)
-	public String getFuculties() {
-	
-		
-		return "admin/faculties";
-	}
-	
-	@RequestMapping(value="/admin/students/details", method=RequestMethod.GET)
-	public String studentDetails() {
-	
-		
-		return "admin/studentDetails";
-	}
-	
-	@RequestMapping(value="/admin/block/details", method=RequestMethod.GET)
-	public String blockDetails() {
-	
-		
-		return "admin/blockDetails";
-	}
 
+	
+	
+	@RequestMapping(value="/course/details", method=RequestMethod.GET)
+	public String courseDetails() {
+	
+		
+		return "course/courseDetails";
+	}
+	
+	
 }
