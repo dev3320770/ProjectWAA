@@ -87,10 +87,12 @@ public class FileUploadController {
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
 					LocalDate date=LocalDate.parse(columns.get(1),formatter);
 					String amPM=columns.get(2);
-					String loc=columns.get(3);
+					String loc=columns.get(3);					
 					
+					List<Session> li=sessionService.findSessionBySessionDate(date);
+					if(li.size()!=0)
+					{
 					
-					// get SessionID by Date
 					Session session=sessionService.findSessionBySessionDate(date).get(0);
 					
 					SessionTransaction st=new SessionTransaction();
@@ -100,17 +102,17 @@ public class FileUploadController {
 					st.setLocation(loc1);
 					st.setStudent(studentRepository.findById(studentId));
 					
+					if(st.getSession()!=null && st.getLocation()!=null && st.getStudent()!=null )
+					{
 					sessionTransactionRepository.save(st);
-					
+					}
+					}
 					System.out.println(scanner.nextLine());
 				}
 
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
-	        
-	        
-	       // Resource res=     storageService.loadAsResource(fileName);
+			}	     
 	        
 	        return "redirect:/upload";
 	    }
