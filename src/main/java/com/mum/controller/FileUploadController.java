@@ -91,10 +91,22 @@ public class FileUploadController {
 					
 					String line=scanner.nextLine();
 					List<String> columns = Arrays.asList(line.split(","));
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
 					
+					try {
+						LocalDate dt =LocalDate.parse(columns.get(0),formatter);
+						dataType=dataManual;
+					}
+					catch(DateTimeException ex) {
+						dataType=dataAuto;
+					}
+					
+					
+					if(dataType==dataAuto)
+					{
 					String studentId= "98" + columns.get(0);
 					//LocalDate localDate = LocalDate.parse(date, formatter);
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
+					
 					LocalDate date=LocalDate.parse(columns.get(1),formatter);
 					String amPM=columns.get(2);
 					String loc=columns.get(3);					
@@ -119,10 +131,46 @@ public class FileUploadController {
 						}
 					}
 					}
+				
+					
+					
+					if(dataType==dataManual)
+					{
+						LocalDate date=LocalDate.parse(columns.get(0),formatter);
+						String studentId=columns.get(1).replace("-","");	
+						
+						long stuL=Long.parseLong(studentId);
+						studentId=Long.toString(stuL);
+					
+					List<Session> li=sessionService.findSessionBySessionDate(date);
+					if(li.size()!=0)
+					{
+						Session session = sessionService.findSessionBySessionDate(date).get(0);
+						System.out.println("Session: " + session);
+						Student student = studentService.findByStudentId(studentId);
+						System.out.println("Student: " + student);
+						
+						Location l1=new Location();
+						l1.setId(1);
+						l1.setName("DB");						
+						
+						if (session != null && student != null && l1 != null) {
+							SessionTransaction st=new SessionTransaction();
+							st.setSession(session);
+							st.setCheckinDate(date);					
+							st.setLocation(l1);
+							st.setStudent(student);
+							sessionTransactionRepository.save(st);
+						}
+					}
+					}
+					
+					
 					
 				}
+	        }
 
-			} catch (IOException e) {
+			catch (IOException e) {
 				e.printStackTrace();
 			}	     
 	        
