@@ -54,7 +54,7 @@ public class SessionTransactionServiceImpl implements SessionTransactionService{
 	}
 
 	@Override
-	public List<SessionTransaction> findByStudentId(Long id) {
+	public List<SessionTransaction> findByStudentId(String id) {
 		// TODO Auto-generated method stub
 		return (List<SessionTransaction>) sessionTransactionRepository.findByStudentId(id);
 	}

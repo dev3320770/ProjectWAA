@@ -31,6 +31,7 @@ public class SessionTransaction implements Serializable {
 	
 	//@NotEmpty(message = "{NotEmpty.err}")
 	
+//	@NotEmpty(message = "{NotEmpty.err}")
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
