@@ -53,7 +53,7 @@ public class DataGeneratorImpl implements DataGeneratorService {
 	@Override
 	public void initialize() {
 		// create blocks for each month of the year
-		for(int i = 1; i <= 12; ++i) {
+		for(int i = 1; i <= 8; ++i) {
 			System.out.println(".... adding block");
 			Block block = generateBlock(i);
 			List<Session> sessions = generateSessions(block);
@@ -263,12 +263,22 @@ public class DataGeneratorImpl implements DataGeneratorService {
 		Collections.shuffle(courses);
 		
 		for(int i = 0; i < students.size(); ++i) {
-			Course course = courses.get(i%courses.size());
 			Student student = students.get(i);
+			Course course = findNewCourse(student, courses);
 			student.addCourse(course);
 			course.addStudent(student);
 			studentService.save(student);
 		}
+	}
+	
+	private Course findNewCourse(Student student, List<Course> courses) {
+		List<Course> studentsCourses = student.getCourses();
+		for(Course course : courses) {
+			if(studentsCourses == null || !studentsCourses.contains(course)) {
+				return course;
+			}
+		}
+		return null;
 	}
 	
 	private void exportTextData() {
