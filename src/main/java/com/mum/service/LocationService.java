@@ -13,5 +13,6 @@ public interface LocationService {
 	List<Location> findAll();
 	long count();
 	boolean existsById(Long id);
+	List<Location> findByName(String name);
 
 }

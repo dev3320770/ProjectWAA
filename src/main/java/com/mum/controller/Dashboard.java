@@ -22,8 +22,8 @@ public class Dashboard {
 	@Autowired
 	UserService userService;
 	
-	@Autowired
-	private InitData initData;
+//	@Autowired
+//	private InitData initData;
 	@RequestMapping(value= {"/","/dashboard"}, method=RequestMethod.GET)
 	public String UserDashboard(Principal principal, Model model) {
 		
@@ -42,10 +42,7 @@ public class Dashboard {
 		
 		if (role.equals("[FACULTY]")) {
 			return "admin/facultyDashboard";
-		}
-		
-		
-	
+		}	
 		
 		return "dashboard";
 	}
