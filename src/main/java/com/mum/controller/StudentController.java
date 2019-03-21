@@ -52,6 +52,7 @@ public class StudentController {
 		List<Course> mylist=myst.getCourses();
 		
 		System.out.println( mylist.stream().map(c->c.getName()).collect(Collectors.toList()));
+		model.addAttribute("courses",mylist.stream().map(c->c.getName()).collect(Collectors.toList()) );
 		model.addAttribute("student", studentService.findByStudentId(studentId));
 		model.addAttribute("tmSessions", sessionTransactionService.findByStudentId(studentSystemId));
 		

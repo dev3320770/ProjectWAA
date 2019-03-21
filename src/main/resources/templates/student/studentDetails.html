@@ -86,21 +86,21 @@
 	<div class="container">
 
 
-		<h3>Static content for prototyping purposes only</h3>
+		<h3>Meditation Attendance</h3>
 		<br>
 		<div   id="sucess"></div>
 		<div  id="error"></div>
 		
 		<table class="table table-bordered">
   <thead>
-    <tr >
-      <th scope="col"  >#</th>
-      <th scope="col" >FPP<span class="badge badge-danger ml-2">4%</span></th>
-      <th scope="col">MPP<span class="badge badge-warning ml-2">90%</span></th>
-      <th scope="col">WAP<span class="badge badge-success ml-2" data-toggle="popover-hover">100% </span></th>
-      <th scope="col">MWA<span class="badge badge-danger ml-2">78%</span></th>
-       <th scope="col">WAA<span class="badge badge-danger ml-2">67%</span></th>
-        <th scope="col">Algorithm<span class="badge badge-danger ml-2">40%</span></th>
+    <tr>
+    <th scope="col">Days</th>
+    <span th:each="course : ${courses}" >
+      <th scope="col" th:text="${course}">FPP</th>
+<!--       <span class="badge badge-danger ml-2">4%</span> -->
+<!--       <th scope="col">WAP<span class="badge badge-success ml-2" data-toggle="popover-hover">100% </span></th> -->
+
+        </span>
     </tr>
   </thead>
   <tbody>
