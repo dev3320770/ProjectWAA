@@ -40,11 +40,11 @@ public class Student implements Serializable {
 	@Email
 	private String email;
 
-	@Valid
+	//@Valid
 	@ManyToMany
 	private List<Course> course;
 
-	@Valid
+	//@Valid
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<SessionTransaction> sessionTransactions;
 

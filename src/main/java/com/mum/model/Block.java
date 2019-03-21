@@ -80,8 +80,11 @@ public class Block implements Serializable {
 		this.sessions = sessions;
 	}
 
-	
-	
+	public void addSession(Session session) {
+		// TODO Auto-generated method stub
+		this.sessions.add(session);
+		
+	}	
 	
 	
 }

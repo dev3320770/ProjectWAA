@@ -28,24 +28,24 @@ public class Course implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@NotEmpty(message = "{NotEmpty.err}")
+	//@NotEmpty(message = "{NotEmpty.err}")
 	private String code;
 	
-	@NotEmpty(message = "{NotEmpty.err}")
+	//@NotEmpty(message = "{NotEmpty.err}")
 	private String name;
 	
-	@NotEmpty(message = "{NotEmpty.err}")
+	//@NotEmpty(message = "{NotEmpty.err}")
 	private String description;
 	
-	@Valid
+	//@Valid
 	@ManyToOne
 	private Block block;
 
-	@Valid
+	//@Valid
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Faculty> faculty;
 
-	@Valid
+	//@Valid
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Student> students;
 	

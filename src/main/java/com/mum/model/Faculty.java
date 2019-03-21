@@ -25,13 +25,13 @@ public class Faculty implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotEmpty(message = "{NotEmpty.err}")
+	//@NotEmpty(message = "{NotEmpty.err}")
 	private String firstName;
 
-	@NotEmpty(message = "{NotEmpty.err}")
+	//@NotEmpty(message = "{NotEmpty.err}")
 	private String lastName;
 	
-	@Email(message = "{Email.err}")
+	//@Email(message = "{Email.err}")
 	private String email;
 
 

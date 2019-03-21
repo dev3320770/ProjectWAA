@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.mum.data.init.InitData;
 import com.mum.model.User;
 import com.mum.service.UserService;
 
-import com.mum.data.init.Data_Init;
+
 
 @Controller
 @SessionAttributes("user")
@@ -21,7 +22,8 @@ public class Dashboard {
 	@Autowired
 	UserService userService;
 	
-	
+	@Autowired
+	private InitData initData;
 	@RequestMapping(value= {"/","/dashboard"}, method=RequestMethod.GET)
 	public String UserDashboard(Principal principal, Model model) {
 		
@@ -34,6 +36,7 @@ public class Dashboard {
 		System.out.println(principal);
 		
 		if(role.equals("[ADMIN]")) {
+			//initData.initialize();
 			return "admin/entries";
 		}
 		

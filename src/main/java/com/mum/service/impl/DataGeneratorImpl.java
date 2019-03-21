@@ -14,8 +14,10 @@ import com.mum.data.init.BlockBuilder;
 import com.mum.data.init.DataGeneratorService;
 import com.mum.data.init.SessionBuilder;
 import com.mum.model.Block;
+import com.mum.model.Course;
 import com.mum.model.Session;
 import com.mum.model.SessionType;
+import com.mum.service.CourseService;
 import com.mum.service.SessionService;
 
 

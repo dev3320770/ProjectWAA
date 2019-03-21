@@ -51,9 +51,7 @@ public class SessionTransaction implements Serializable {
 		return student;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
-	}
+	
 
 	public LocalDate getCheckinDate() {
 		return checkinDate;
