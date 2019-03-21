@@ -18,7 +18,7 @@ $('[data-toggle="date-hover"]').popover({
 	}
 });
 
-$('form').submit(function(event) {
+$('.form-inline').submit(function(event) {
 
 					event.preventDefault();
 					var studentId = $("#studentId").val();	

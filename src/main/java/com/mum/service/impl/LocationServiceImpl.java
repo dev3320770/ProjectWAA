@@ -50,6 +50,12 @@ public class LocationServiceImpl implements LocationService {
 		// TODO Auto-generated method stub
 		return locationRepository.existsById(id);
 	}
+
+	@Override
+	public List<Location> findByName(String name) {
+		// TODO Auto-generated method stub
+		return	locationRepository.findByName(name);
+	}
 	
 	
 

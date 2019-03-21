@@ -2,6 +2,8 @@ package com.mum.configuration;
 
 import java.util.Locale;
 
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,8 +16,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import com.mum.storage.StorageProperties;
+import com.mum.storage.StorageService;
+
 
 @Configuration
+@EnableConfigurationProperties(StorageProperties.class)
 public class WebAppContextConfig implements WebMvcConfigurer {
 	
 	@Bean
@@ -39,7 +45,7 @@ public class WebAppContextConfig implements WebMvcConfigurer {
 	
 	
 	public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/dashboard").setViewName("dashboard");
+        //registry.addViewController("/dashboard").setViewName("dashboard");
         registry.addViewController("/login").setViewName("login");
 	
 	
@@ -57,6 +63,15 @@ public class WebAppContextConfig implements WebMvcConfigurer {
 	       firewall.setAllowUrlEncodedSlash(true);    
 	       return firewall;
 	   }
+	   
+
+	   @Bean
+	    CommandLineRunner init(StorageService storageService) {
+	        return (args) -> {
+	            storageService.deleteAll();
+	            storageService.init();
+	        };
+	    }
 	   
 	  
 

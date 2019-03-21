@@ -21,10 +21,10 @@ public class AdminController {
 	@RequestMapping(value="/entries", method=RequestMethod.GET)
 	public String getEntries(Model model ,Student student) {
 		List<Student> students = studentService.findAll();
-		for(Student s: students) {
-			System.out.println(s);
-			
-		}
+//		for(Student s: students) {
+//			System.out.println(s);
+//			
+//		}
 		
 		model.addAttribute("student", students);
 		
