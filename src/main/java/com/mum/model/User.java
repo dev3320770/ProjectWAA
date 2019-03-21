@@ -1,6 +1,7 @@
 package com.mum.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -36,13 +37,13 @@ public class User implements Serializable {
 	
 	@Column(name = "username")
 	@NotEmpty(message = "{NotEmpty.err}")
-	@UniqueElements
+	//@UniqueElements
 	private String username;
 	
 	@Column(name = "email")
 	@Email(message = "{Email.err}")
 	@NotEmpty(message = "{NotEmpty.err}")
-	@UniqueElements
+	//@UniqueElements
 	private String email;
 	
 	@Column(name = "password")
@@ -74,8 +75,6 @@ public class User implements Serializable {
 		this.id = id;
 	}
 	
-	
-
 	public String getUsername() {
 		return username;
 	}
@@ -112,13 +111,11 @@ public class User implements Serializable {
 		return active;
 	}
 	
-
-
 	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+	public void setRole(Set<Role> roles) {
 		this.roles = roles;
 	}
 
@@ -126,6 +123,16 @@ public class User implements Serializable {
 		this.active = active;
 	}
 
+	public void addRole(Role role) {
+		if (roles == null) {
+			roles = new HashSet<>();
+		}
+		roles.add(role);
+	}
+	
+	public Role getRole() {
+		return (Role)(roles.toArray()[0]);
+	}
 
 
 	public String getFirstName() {

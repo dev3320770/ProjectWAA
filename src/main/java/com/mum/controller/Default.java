@@ -18,7 +18,7 @@ import com.mum.service.UserService;
 
 @Controller
 @SessionAttributes("user")
-public class Dashboard {
+public class Default {
 	@Autowired
 	UserService userService;
 	
@@ -36,6 +36,7 @@ public class Dashboard {
 		System.out.println(principal);
 		
 		if(role.equals("[ADMIN]")) {
+<<<<<<< HEAD:src/main/java/com/mum/controller/Dashboard.java
 			//initData.initialize();
 			return "admin/entries";
 		}
@@ -43,46 +44,27 @@ public class Dashboard {
 		if (role.equals("[FACULTY]")) {
 			return "admin/facultyDashboard";
 		}	
+=======
+			return "redirect:/entries";
+		}
+		
+		if (role.equals("[FACULTY]")) {
+			return "redirect:/facultyDashboard";
+		}
+>>>>>>> master:src/main/java/com/mum/controller/Default.java
 		
 		return "dashboard";
 	}
 	
-	
-	@RequestMapping(value="/admin/students", method=RequestMethod.GET)
-	public String getStudents() {
-	
-		
-		return "admin/students";
-	}
-	
-	
-	@RequestMapping(value="/admin/entries", method=RequestMethod.GET)
-	public String getEntries() {
-	
-		
-		return "admin/entries";
-	}
-	
-	
-	@RequestMapping(value="/admin/faculties", method=RequestMethod.GET)
-	public String getFuculties() {
-	
-		
-		return "admin/faculties";
-	}
-	
-	@RequestMapping(value="/admin/students/details", method=RequestMethod.GET)
-	public String studentDetails() {
-	
-		
-		return "admin/studentDetails";
-	}
-	
-	@RequestMapping(value="/admin/block/details", method=RequestMethod.GET)
-	public String blockDetails() {
-	
-		
-		return "admin/blockDetails";
-	}
 
+	
+	
+	@RequestMapping(value="/course/details", method=RequestMethod.GET)
+	public String courseDetails() {
+	
+		
+		return "course/courseDetails";
+	}
+	
+	
 }

@@ -8,11 +8,11 @@ import com.mum.model.Faculty;
 
 public interface FacultyService {
 	
-	Faculty save(Faculty faculty);
-	List<Faculty> saveAll(List<Faculty> faculties);
-	Faculty findById(long id);
-	List<Faculty> findAll();
-	long count();
-	boolean existsById(Long id);
-
+	public Faculty save(Faculty faculty);
+	public List<Faculty> saveAll(List<Faculty> faculties);
+	public Faculty findById(long id);
+	public List<Faculty> findAll();
+	public long count();
+	public boolean existsById(Long id);
+	public List<String> getFacultyNames();
 }

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -33,131 +34,133 @@
 	<main class="mt-5"> <!--Main container-->
 	<div class="container">
 
-		<h3>Static content for prototyping purposes only</h3>
+		<h3>Student Entries</h3>
 		<br>
+		<div   id="sucess"></div>
+		<div  id="error"></div>
 		
-		<div class="container">
-  <div class="row">
 
-
-    
-    <div class="col-md-4">
-
-	<!--Accordion wrapper-->
-<div class="accordion md-accordion accordion-3 z-depth-1-half" id="accordionEx194" role="tablist"
-aria-multiselectable="true">
+		
+			<div class="row">
 
 
 
-<h2 class="text-center text-uppercase red-text py-4 px-3">Entries By Year</h2>
+				<div class="col-md-4">
 
-<hr class="mb-0">
-
-<!-- Accordion card -->
-<div class="card">
-
-  <!-- Card header -->
-  <div class="card-header" role="tab" id="heading4">
-    <a data-toggle="collapse" data-parent="#accordionEx194" href="#collapse4" aria-expanded="true"
-      aria-controls="collapse4">
-      <h3 class="mb-0 red-text">
-        2019<div class="animated-icon1 float-right mt-1"><span></span><span></span><span></span></div>
-      </h3>
-    </a>
-  </div>
-
-  <!-- Card body -->
-  <div id="collapse4" class="collapse show" role="tabpanel" aria-labelledby="heading4" data-parent="#accordionEx194">
-    <div class="card-body pt-0">
-      <p>FEB</p>
-       <p>APRIL</p>
-        <p>AUG</p>
-        <p>OCT</p>
-    </div>
-  </div>
-</div>
-<!-- Accordion card -->
-
-<!-- Accordion card -->
-<div class="card">
-
-  <!-- Card header -->
-  <div class="card-header" role="tab" id="heading5">
-    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx194" href="#collapse5" aria-expanded="false"
-      aria-controls="collapse5">
-      <h3 class="mb-0 red-text">
-       2018 <div class="animated-icon1 float-right mt-1"><span></span><span></span><span></span></div>
-      </h3>
-    </a>
-  </div>
-
-  <!-- Card body -->
-  <div id="collapse5" class="collapse" role="tabpanel" aria-labelledby="heading5" data-parent="#accordionEx194">
-    <div class="card-body pt-0">
-      <p>FEB</p>
-       <p>APRIL</p>
-        <p>AUG</p>
-        <p>OCT</p>
-    </div>
-  </div>
-</div>
-
-
-</div>
-<!--/.Accordion wrapper-->
+					<!--Accordion wrapper-->
+					<div class="accordion md-accordion accordion-3 z-depth-1-half"
+						id="accordionEx194" role="tablist" aria-multiselectable="true">
 
 
 
-</div>
+						<h2 class="text-center text-uppercase red-text py-4 px-3">Entries
+							By Year</h2>
+
+						<hr class="mb-0">
+
+						<!-- Accordion card -->
+						<div class="card">
+
+							<!-- Card header -->
+							<div class="card-header" role="tab" id="heading4">
+								<a data-toggle="collapse" data-parent="#accordionEx194"
+									href="#collapse4" aria-expanded="true"
+									aria-controls="collapse4">
+									<h3 class="mb-0 red-text">
+										2019
+										<div class="animated-icon1 float-right mt-1">
+											<span></span><span></span><span></span>
+										</div>
+									</h3>
+								</a>
+							</div>
+
+							<!-- Card body -->
+							<div id="collapse4" class="collapse show" role="tabpanel"
+								aria-labelledby="heading4" data-parent="#accordionEx194">
+								<div class="card-body pt-0">
+									<p>FEB</p>
+									<p>APRIL</p>
+									<p>AUG</p>
+									<p>OCT</p>
+								</div>
+							</div>
+						</div>
+						<!-- Accordion card -->
+
+						<!-- Accordion card -->
+						<div class="card">
+
+							<!-- Card header -->
+							<div class="card-header" role="tab" id="heading5">
+								<a class="collapsed" data-toggle="collapse"
+									data-parent="#accordionEx194" href="#collapse5"
+									aria-expanded="false" aria-controls="collapse5">
+									<h3 class="mb-0 red-text">
+										2018
+										<div class="animated-icon1 float-right mt-1">
+											<span></span><span></span><span></span>
+										</div>
+									</h3>
+								</a>
+							</div>
+
+							<!-- Card body -->
+							<div id="collapse5" class="collapse" role="tabpanel"
+								aria-labelledby="heading5" data-parent="#accordionEx194">
+								<div class="card-body pt-0">
+									<p>FEB</p>
+									<p>APRIL</p>
+									<p>AUG</p>
+									<p>OCT</p>
+								</div>
+							</div>
+						</div>
 
 
-    <div class="col-md-8">
+					</div>
+					<!--/.Accordion wrapper-->
 
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-    
-        <th scope="col">Total Sessions (%)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
- 
-      <td>124<span class="badge badge-danger ml-2">9%</span></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-  
-      <td>124<span class="badge badge-danger ml-2">9%</span></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry </td>
-      <td>Bird</td>
 
-      <td>124 <span class="badge badge-danger ml-2">9%</span> </td>
-        
-    </tr>
-  </tbody>
-</table>
+				</div>
 
 
-</div>
+				<div class="col-md-8">
 
 
-  </div>
-</div>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+									<th scope="col">Student ID</th>
+								<th scope="col">First Name</th>
+								<th scope="col">Last Name</th>
+								<th scope="col">Entry Date</th>
+								<th scope="col">Total Sessions (%)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="student , itterator: ${student}">
+								<th scope="row" th:text="${itterator.index+1}">1</th>
+								 <td><a th:href="@{~/students/details/(studentId=${student.studentId})}" th:text="${student.studentId}">986669</a></td>
+								<td th:text="${student.firstName}">Mark</td>
+								<td th:text="${student.lastName}">Otto</td>
+								<td th:text="${#temporals.monthName(student.entryDate) + ' ' + #temporals.year(student.entryDate)}">Otto</td>
+								<td th:text="${#lists.size(student.sessionTransactions)}">124<span class="badge badge-danger ml-2">9%</span></td>
+							</tr>
+							
+						</tbody>
+					</table>
 
-	
+
+				</div>
+
+
+		
+		</div>
+
+
 
 	</div>
 
@@ -172,7 +175,10 @@ aria-multiselectable="true">
 
 	<!-- SCRIPTS -->
 	<!-- JQuery -->
+	
+	
 	<script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+	
 	<!-- Bootstrap tooltips -->
 	<script type="text/javascript" th:src="@{~/js/popper.min.js}"></script>
 	<!-- Bootstrap core JavaScript -->

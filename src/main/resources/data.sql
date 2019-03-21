@@ -21,3 +21,11 @@ insert  into user_role(role_id, user_id) values(2,5);
 insert  into user_role(role_id, user_id) values(3,6);
 insert  into user_role(role_id, user_id) values(3,7);
 insert  into user_role(role_id, user_id) values(2,8);
+
+
+insert into student ( id , student_id,email , entry_date , first_name , last_name , user_id ) values (1,986684,'student@gmail.com',now(),'Hedvig','Mendoca',6)
+insert into student ( id , student_id, email , entry_date , first_name , last_name , user_id ) values (2,'986683','tutqa@gmail.com',now(),'Festus','Iipito',7)
+
+
+insert into location ( id , name ,description ) values (1, 'DH','Darby Hall');
+insert into location ( id , name ,description ) values (2, 'HH','HH');

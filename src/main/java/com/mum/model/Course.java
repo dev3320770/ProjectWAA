@@ -1,9 +1,13 @@
 package com.mum.model;
 
 import java.io.Serializable;
+<<<<<<< HEAD
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashSet;
+=======
+import java.util.ArrayList;
+>>>>>>> master
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
@@ -41,12 +46,21 @@ public class Course implements Serializable {
 	@ManyToOne
 	private Block block;
 
+<<<<<<< HEAD
 	//@Valid
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Faculty> faculty;
 
 	//@Valid
 	@ManyToMany(cascade = CascadeType.ALL)
+=======
+	@Valid
+	@ManyToOne
+	private Faculty faculty;
+
+	@Valid
+	@ManyToMany(cascade = CascadeType.PERSIST)
+>>>>>>> master
 	private List<Student> students;
 	
 	
@@ -93,11 +107,11 @@ public class Course implements Serializable {
 
 
 
-	public List<Faculty> getFaculty() {
+	public Faculty getFaculty() {
 		return faculty;
 	}
 
-	public void setFaculty(List<Faculty> faculty) {
+	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
 	}
 
@@ -110,7 +124,16 @@ public class Course implements Serializable {
 	}
 
 	public void addStudent(Student student) {
+		if (students == null) 
+			students = new ArrayList<>();
 		this.students.add(student);
 	}
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", code=" + code + ", name=" + name  + "]";
+	}
+	
+	
 
 }

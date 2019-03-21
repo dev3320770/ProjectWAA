@@ -22,7 +22,7 @@
 <link th:href="@{~/css/style.css}" rel="stylesheet">
 </head>
 <body>
-
+<div class="page-content">
 	<!-- navigation -->
 	<nav  th:replace="fragments/nav :: nav" >
 	This nav content is going
@@ -45,7 +45,7 @@
   <div class="row">
  
     <div class="col">
-      <h3>Festus Iipito</h3>
+      <h3 th:text="${student.firstName} +' '+ ${student.lastName} ">Festus Iipito</h3>
         <p>120% overall medditaion sessions</p>
           <p>65 % attaendace on Current Block </p>
          
@@ -53,7 +53,7 @@
     
     <div class="col">
        <h3>Entry</h3>
-         <p>August</p>
+         <p th:text="${#temporals.monthName(student.entryDate)}">August</p>
            <p>FPP</p>
     </div>
     <div class="col">
@@ -88,13 +88,14 @@
 
 		<h3>Static content for prototyping purposes only</h3>
 		<br>
-		
+		<div   id="sucess"></div>
+		<div  id="error"></div>
 		
 		<table class="table table-bordered">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">FPP<span class="badge badge-danger ml-2">4%</span></th>
+      <th scope="col" th:text="${student.course}">FPP<span class="badge badge-danger ml-2">4%</span></th>
       <th scope="col">MPP<span class="badge badge-warning ml-2">90%</span></th>
       <th scope="col">WAP<span class="badge badge-success ml-2" data-toggle="popover-hover">100% </span></th>
       <th scope="col">MWA<span class="badge badge-danger ml-2">78%</span></th>
@@ -156,6 +157,6 @@
 	<!-- MDB core JavaScript -->
 	<script type="text/javascript" th:src="@{~/js/mdb.js}"></script>
 	<script type="text/javascript" th:src="@{~/js/custom.js}"></script>
-
+</div>
 </body>
 </html>

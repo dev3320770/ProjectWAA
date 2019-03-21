@@ -49,6 +49,12 @@ public class SessionTransactionServiceImpl implements SessionTransactionService{
 		// TODO Auto-generated method stub
 		return sessionTransactionRepository.existsById(id);
 	}
+
+	@Override
+	public List<SessionTransaction> findByStudentId(Long id) {
+		// TODO Auto-generated method stub
+		return (List<SessionTransaction>) sessionTransactionRepository.findByStudentId(id);
+	}
 	
 
 }
