@@ -134,24 +134,28 @@
 					
 				
 
+					
 					<form class="form-inline" >
 						<div class="md-form my-0">
-							<input class="form-control mr-sm-2" type="text"
-								placeholder="Search" aria-label="Search">
+							<input id="studentId" class="form-control mr-sm-2 " type="text" name="studentID"
+								placeholder="Find Student ID" aria-label="Search">
 						</div>
-						<button class="btn btn-outline-white btn-sm my-2 my-sm-0 ml-3"
-							type="submit" th:text="#{label.search}">search</button>
+						<button class="btn btn-outline-white btn-sm my-2 my-sm-0 ml-3 getStudentById" type="submit" th:text="#{label.search}">search</button>
 					</form>
 
 
 					<ul class="navbar-nav ml-auto nav-flex-icons">
-						<li class="nav-item avatar dropdown"><a
+						<li class="nav-item avatar dropdown">
+						
+							<a
 							class="nav-link dropdown-toggle nav-link p-0"
 							id="navbarDropdownMenuLink" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false" href="#"> <img
-								src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+								src="https://ui-avatars.com/api/?name=J+D" th:attr="src=@{https://ui-avatars.com/api/?uppercase=True(name=${user.firstName} )}"
 								class="rounded-circle z-depth-0" alt="avatar image" height="35">
 						</a>
+						
+				
 							<div class="dropdown-menu dropdown-primary"
 								aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" href="#">Profile</a> <a
@@ -202,7 +206,9 @@
 
 
 					<ul class="navbar-nav ml-auto nav-flex-icons">
-						<li class="nav-item avatar dropdown"><a
+						<li class="nav-item avatar dropdown">
+						
+							<a
 							class="nav-link dropdown-toggle nav-link p-0"
 							id="navbarDropdownMenuLink" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false" href="#"> <img

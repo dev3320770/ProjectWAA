@@ -36,7 +36,7 @@ public class Default {
 		}
 		
 		if (role.equals("[FACULTY]")) {
-			return "redirect:/facultyDashboard";
+			return "redirect:/faculty";
 		}
 		
 		return "dashboard";
